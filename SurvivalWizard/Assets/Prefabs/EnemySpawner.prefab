@@ -47,13 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPoolData:
-  - _numberPool: 0
-    Prefab: {fileID: 2170941664547645012, guid: db2599d9c723679489940a6e1d49be02, type: 3}
+  - Prefab: {fileID: 2170941664547645012, guid: db2599d9c723679489940a6e1d49be02, type: 3}
     PoolCount: 100
     PoolMaxCount: 200
     Container: {fileID: 7665139873582467892}
-  - _numberPool: 1
-    Prefab: {fileID: 2170941664547645012, guid: db2599d9c723679489940a6e1d49be02, type: 3}
+  - Prefab: {fileID: 2170941664547645012, guid: db2599d9c723679489940a6e1d49be02, type: 3}
     PoolCount: 100
     PoolMaxCount: 200
     Container: {fileID: 5702584500744200233}

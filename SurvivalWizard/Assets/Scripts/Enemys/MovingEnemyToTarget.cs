@@ -1,4 +1,5 @@
 ﻿
+using SurvivalWizard.EnemyState;
 using UnityEngine;
 
 namespace SurvivalWizard.Enemys

@@ -44,9 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59aa188b021ac794684d7cbe9b8d47e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultPlayerWeapon: {fileID: 377925583194658968, guid: 7b37b35d918146c4e868e6906513a00d,
-    type: 3}
   _pointSpawnPlayer: {fileID: 0}
-  _player: {fileID: 5407778450110943450, guid: cecd64082c1bca14186c9c9b4044ceff, type: 3}
-  _navMeshData: {fileID: 0}
-  _characterStats: {fileID: 11400000, guid: 503e0752704e88247a724cd651680aca, type: 2}
+  _prefabPlayer: {fileID: 5407778450110943450, guid: cecd64082c1bca14186c9c9b4044ceff, type: 3}
+  _enemySpawner: {fileID: 3193457031294576214, guid: 37a31bab3d1928042be921eb52149438, type: 3}
+  _map: {fileID: 4166851675436163460, guid: 468766b9096a72243845b28b65363588, type: 3}

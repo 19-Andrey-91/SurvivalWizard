@@ -7,7 +7,7 @@ namespace SurvivalWizard.Base
     public abstract class Entity : MonoBehaviour
     {
         public event Action<Entity> OnDiedEvent;
-        public event Action<Entity, float> OnTakeDamageEvent;
+        public event Action<Entity> OnTakeDamageEvent;
 
         [SerializeField] protected float _hp;
         [SerializeField] protected float _maxHp;
@@ -34,7 +34,7 @@ namespace SurvivalWizard.Base
         public bool TakeDamage(float damage)
         {
             _hp -= damage;
-            OnTakeDamageEvent?.Invoke(this, damage);
+            OnTakeDamageEvent?.Invoke(this);
             if (_hp <= 0)
             {
                 OnDiedEvent?.Invoke(this);

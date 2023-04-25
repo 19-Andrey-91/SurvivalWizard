@@ -10,7 +10,8 @@ namespace SurvivalWizard.Enemys
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] ObjectPool<Enemy> pool;
+        public event Action<int> OnUpdatedCountKillsEvent;
+
         [Header("Enemy Prefabs")]
         [SerializeField] private List<PoolData<Enemy>> _enemyPoolData;
         [Header("Spawn options")]
@@ -24,6 +25,7 @@ namespace SurvivalWizard.Enemys
         private float _timer;
         private float _allTime;
         private int _indexPool = 0;
+        private int _countKills = 0;
 
         private void Start()
         {
@@ -46,6 +48,7 @@ namespace SurvivalWizard.Enemys
                         Enemy enemy = Instantiate(data.Prefab, data.Container);
                         enemy.NumberPool = numberPool;
                         enemy.OnDiedEvent += ReleaseEnemyAfterDeath;
+                        enemy.OnDiedEvent += IncrementCountKills;
                         return enemy;
                     },
                     enemy =>
@@ -59,6 +62,7 @@ namespace SurvivalWizard.Enemys
                     },
                     enemy =>
                     {
+                        enemy.OnDiedEvent -= IncrementCountKills;
                         enemy.OnDiedEvent -= ReleaseEnemyAfterDeath;
                         Destroy(enemy);
                     },
@@ -67,6 +71,12 @@ namespace SurvivalWizard.Enemys
                     data.PoolMaxCount
                 ));
             }
+        }
+
+        private void IncrementCountKills(Entity obj)
+        {
+            _countKills++;
+            OnUpdatedCountKillsEvent?.Invoke(_countKills);
         }
 
         private void ReleaseEnemyAfterDeath(Entity obj)

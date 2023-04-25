@@ -9,7 +9,7 @@ namespace SurvivalWizard.Enemys
     [RequireComponent(typeof(NavMeshAgent))]
     public class Enemy : Entity
     {
-        protected StateMachine _stateMachine;
+        protected StateMachineEnemy _stateMachine;
         protected NavMeshAgent _agent;
         protected Transform _target;
 
@@ -39,7 +39,7 @@ namespace SurvivalWizard.Enemys
         {
             _enemyTransform = transform;
             _agent = GetComponent<NavMeshAgent>();
-            _stateMachine = new StateMachine();
+            _stateMachine = new StateMachineEnemy();
             _agent.speed = _speed;
         }
 
