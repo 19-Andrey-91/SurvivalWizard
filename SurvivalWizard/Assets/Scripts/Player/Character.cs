@@ -12,12 +12,12 @@ namespace SurvivalWizard.Player
     {
         [SerializeField] private Transform _pointSpawnSpell;
         [SerializeField] private Spell _spell;
-        public Transform PointSpawnSpell { get => _pointSpawnSpell; }
 
         private PlayerMovement _playerMovement;
         private Animator _animator;
         private float _timer;
         
+        public Transform PointSpawnSpell { get => _pointSpawnSpell; }
         public Animator CharacterAnimator { get { return _animator ??= GetComponentInChildren<Animator>(); } }
 
         private void Awake()

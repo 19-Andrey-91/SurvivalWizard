@@ -58,6 +58,7 @@ MonoBehaviour:
   _spawnRadius: 30
   _minDistanceToPlayer: 15
   _delayBetweenSpawn: 0.3
+  _enemyWaveChangeTime: 10
 --- !u!1 &5911324269530908734
 GameObject:
   m_ObjectHideFlags: 0

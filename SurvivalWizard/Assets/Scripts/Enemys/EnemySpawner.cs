@@ -18,6 +18,7 @@ namespace SurvivalWizard.Enemys
         [SerializeField] private float _spawnRadius = 10f;
         [SerializeField] private float _minDistanceToPlayer = 5f;
         [SerializeField] private float _delayBetweenSpawn;
+        [SerializeField] private float _enemyWaveChangeTime;
 
         private List<ObjectPool<Enemy>> _enemyPools;
 
@@ -97,9 +98,9 @@ namespace SurvivalWizard.Enemys
             }
 
             _timer -= _delayBetweenSpawn;
-            if(_allTime > 5)
+            if(_allTime > _enemyWaveChangeTime && _indexPool < _enemyPools.Count - 1)
             {
-                _indexPool = 1;
+                _indexPool++;
             }
             CheckDistanceToPlayerAndSetPosition(_enemyPools[_indexPool].Get);
         }

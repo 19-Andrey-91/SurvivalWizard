@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace SurvivalWizard.Spells
 {
-    [RequireComponent(typeof(SphereCollider))]
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(SphereCollider), typeof(Rigidbody))]
     public abstract class Spell : MonoBehaviour
     {
         public float LifeTime;
@@ -24,7 +23,6 @@ namespace SurvivalWizard.Spells
 
             _myRigidbody = GetComponent<Rigidbody>();
             _myRigidbody.isKinematic = true;
-
 
             Destroy(gameObject, LifeTime);
         }

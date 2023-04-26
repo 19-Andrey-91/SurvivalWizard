@@ -8,15 +8,12 @@ namespace SurvivalWizard.Spells
     {
         private void Update()
         {
-            if(Speed > 0)
-            {
-                transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-            }
+            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.TryGetComponent(out Enemy enemy))
+            if (other.TryGetComponent(out Enemy enemy))
             {
                 enemy.TakeDamage(Damage);
             }
