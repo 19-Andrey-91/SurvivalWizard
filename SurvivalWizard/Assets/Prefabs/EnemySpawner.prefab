@@ -47,17 +47,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPoolData:
-  - Prefab: {fileID: 2170941664547645012, guid: db2599d9c723679489940a6e1d49be02, type: 3}
+  - Prefab: {fileID: 2453743121291988122, guid: d941199d4a58fcb45adc75ea8e37c42c, type: 3}
     PoolCount: 100
     PoolMaxCount: 200
     Container: {fileID: 7665139873582467892}
-  - Prefab: {fileID: 2170941664547645012, guid: db2599d9c723679489940a6e1d49be02, type: 3}
+  - Prefab: {fileID: 9102666740534849626, guid: 0ba0f6eee23032e4e83d421e739dc905, type: 3}
     PoolCount: 100
     PoolMaxCount: 200
     Container: {fileID: 5702584500744200233}
   _spawnRadius: 30
   _minDistanceToPlayer: 15
-  _delayBetweenSpawn: 0.05
+  _delayBetweenSpawn: 0.3
 --- !u!1 &5911324269530908734
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7665139873582467892}
   m_Layer: 0
-  m_Name: MovingEnemyToTarget
+  m_Name: Pool_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5702584500744200233}
   m_Layer: 0
-  m_Name: 2
+  m_Name: Pool_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

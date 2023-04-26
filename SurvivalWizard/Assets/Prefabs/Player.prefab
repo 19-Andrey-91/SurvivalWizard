@@ -88,10 +88,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 300
   _maxHp: 300
-  _damage: 100
-  _speed: 4
+  _damage: 10
+  _speed: 8
   _attackSpeed: 0
-  _pointSpawnWeapon: {fileID: 7321842809073077934}
+  _pointSpawnSpell: {fileID: 7321842809073077934}
+  _spell: {fileID: 3650114381809995551, guid: 0e5e569b5a3bc994b810816a7a4c4635, type: 3}
 --- !u!1001 &6169963573577500681
 PrefabInstance:
   m_ObjectHideFlags: 0
