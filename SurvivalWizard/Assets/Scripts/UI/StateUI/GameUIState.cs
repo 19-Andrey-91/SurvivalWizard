@@ -1,6 +1,6 @@
 ﻿using SurvivalWizard.Base;
 using SurvivalWizard.Enemys;
-using SurvivalWizard.Player;
+using SurvivalWizard.PlayerScripts;
 using SurvivalWizard.UI.UIScripts;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace SurvivalWizard.UI.StateUI
     {
         private LoaderUI _loaderUI;
         private GameUI _gameUI;
-        private Character _player;
+        private Player _player;
         private EnemySpawner _enemySpawner;
         public GameUIState(LoaderUI loaderUI, GameUI gameUI)
         {

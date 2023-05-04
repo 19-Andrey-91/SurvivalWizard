@@ -1,10 +1,13 @@
+using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace SurvivalWizard.Base
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class Entity : MonoBehaviour
+    public abstract class Entity : MonoBehaviour, ICanTakeDamage
     {
         public event Action<Entity> OnDiedEvent;
         public event Action<Entity> OnTakeDamageEvent;
@@ -15,6 +18,8 @@ namespace SurvivalWizard.Base
         [SerializeField] protected float _speed;
         [SerializeField] protected float _attackSpeed;
 
+        private CancellationTokenSource _cancellationTokenSource;
+
         public float Hp
         {
             get => _hp;
@@ -23,7 +28,9 @@ namespace SurvivalWizard.Base
                 if (value > _maxHp)
                 {
                     _hp = _maxHp;
+                    return;
                 }
+                _hp = value;
             }
         }
         public float MaxHp { get => _maxHp; set => _maxHp = CheckValue(value); }
@@ -35,12 +42,17 @@ namespace SurvivalWizard.Base
         {
             _hp -= damage;
             OnTakeDamageEvent?.Invoke(this);
+            Debug.Log($"{this}, {damage}");
+
             if (_hp <= 0)
             {
+                _cancellationTokenSource.Cancel();
+
                 OnDiedEvent?.Invoke(this);
-                return true;
+
+                return false;
             }
-            return false;
+            return true;
         }
 
         private float CheckValue(float value)
@@ -50,6 +62,43 @@ namespace SurvivalWizard.Base
                 value = 0;
             }
             return value;
+        }
+
+        private void OnEnable()
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+        }
+
+        private void OnDisable()
+        {
+            _cancellationTokenSource.Cancel();
+        }
+
+        private async UniTaskVoid ApplyDurationDamageAsync(float durationDamage, float duration, float partsAmount, CancellationToken token)
+        {
+            float damage = Mathf.Ceil(durationDamage / partsAmount);
+            float partDuration = duration / partsAmount;
+
+            for (int i = 0; i < partsAmount; i++)
+            {
+                try
+                {
+                    await UniTask.Delay(TimeSpan.FromSeconds(partDuration), cancellationToken: token);
+                }
+                catch
+                {
+                    break;
+                }
+
+                TakeDamage(damage);
+            }
+        }
+
+        public bool TakeDurationDamage(float durationDamage, float duration, float partsAmount)
+        {
+            _ = ApplyDurationDamageAsync(durationDamage, duration, partsAmount, _cancellationTokenSource.Token);
+
+            return !_cancellationTokenSource.Token.IsCancellationRequested;
         }
     }
 }

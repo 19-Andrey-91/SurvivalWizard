@@ -48,16 +48,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPoolData:
   - Prefab: {fileID: 2453743121291988122, guid: d941199d4a58fcb45adc75ea8e37c42c, type: 3}
-    PoolCount: 100
-    PoolMaxCount: 200
+    PoolCount: 200
+    PoolMaxCount: 300
     Container: {fileID: 7665139873582467892}
   - Prefab: {fileID: 9102666740534849626, guid: 0ba0f6eee23032e4e83d421e739dc905, type: 3}
-    PoolCount: 100
-    PoolMaxCount: 200
+    PoolCount: 200
+    PoolMaxCount: 300
     Container: {fileID: 5702584500744200233}
   _spawnRadius: 30
   _minDistanceToPlayer: 15
-  _delayBetweenSpawn: 0.3
+  _delayBetweenSpawn: 0.1
   _enemyWaveChangeTime: 10
 --- !u!1 &5911324269530908734
 GameObject:

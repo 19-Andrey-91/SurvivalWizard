@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6432259957266757698}
   - component: {fileID: 5734779361378995813}
   - component: {fileID: 3056590137075533102}
-  - component: {fileID: 3650114381809995551}
   - component: {fileID: 6829585374338170461}
+  - component: {fileID: 6793451876133578581}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 42e26e838cb21e944aa7de2aae4edefc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,23 +107,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3650114381809995551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5612621031824510677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cb8dbc8ebcbefa4eb708c76b1e1d78d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeTime: 1
-  SpellRadius: 1
-  DelayBetweenCast: 0.5
-  Damage: 100
-  Speed: 30
 --- !u!54 &6829585374338170461
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,3 +134,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6793451876133578581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612621031824510677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2581907051b2e0f408c7dfa3fa42ed24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 20
+  _delayBetweenCast: 1.5
+  _searchAreaTarget: 10
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _speed: 30
+  _lifeTime: 1

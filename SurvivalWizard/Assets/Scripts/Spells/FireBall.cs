@@ -4,18 +4,34 @@ using UnityEngine;
 
 namespace SurvivalWizard.Spells
 {
-    public class FireBall : Spell
+    public class Fireball : FlyingSpell
     {
-        private void Update()
+        protected override void Start()
         {
-            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            base.Start();
+            SetRotation();
+        }
+
+        private void SetRotation()
+        {
+            Collider nearestTarget = GetCollider.GetNearestCollider(transform, _targetColliders);
+
+            if (nearestTarget == null)
+            {
+                return;
+            }
+
+            Vector3 direction = nearestTarget.transform.position - transform.position;
+            direction.y = 0;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = rotation;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Enemy enemy))
             {
-                enemy.TakeDamage(Damage);
+                CurrentSpellDamage.ApplyDamage(enemy);
             }
         }
     }

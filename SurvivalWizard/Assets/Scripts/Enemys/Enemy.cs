@@ -1,6 +1,6 @@
 
 using SurvivalWizard.Base;
-using SurvivalWizard.Player;
+using SurvivalWizard.PlayerScripts;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -50,7 +50,7 @@ namespace SurvivalWizard.Enemys
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Character player))
+            if (other.TryGetComponent(out Player player))
             {
                 player.TakeDamage(Damage);
             }

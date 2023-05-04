@@ -52,22 +52,22 @@ namespace SurvivalWizard.Enemys
                         enemy.OnDiedEvent += IncrementCountKills;
                         return enemy;
                     },
-                    enemy =>
+                    enemyGet =>
                     {
-                        enemy.gameObject.SetActive(true);
-                        enemy.Hp = enemy.MaxHp;
+                        enemyGet.Hp = enemyGet.MaxHp;
+                        enemyGet.gameObject.SetActive(true);
                     },
-                    enemy =>
+                    enemyRelease =>
                     {
-                        enemy.gameObject.SetActive(false);
+                        enemyRelease.gameObject.SetActive(false);
                     },
-                    enemy =>
+                    enemyDestroy =>
                     {
-                        enemy.OnDiedEvent -= IncrementCountKills;
-                        enemy.OnDiedEvent -= ReleaseEnemyAfterDeath;
-                        Destroy(enemy);
+                        enemyDestroy.OnDiedEvent -= IncrementCountKills;
+                        enemyDestroy.OnDiedEvent -= ReleaseEnemyAfterDeath;
+                        Destroy(enemyDestroy.gameObject);
                     },
-                    false, 
+                    true, 
                     data.PoolCount, 
                     data.PoolMaxCount
                 ));

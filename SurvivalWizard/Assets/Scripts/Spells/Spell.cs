@@ -1,30 +1,32 @@
 ﻿
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SurvivalWizard.Spells
 {
-    [RequireComponent(typeof(SphereCollider), typeof(Rigidbody))]
     public abstract class Spell : MonoBehaviour
     {
-        public float LifeTime;
-        public float SpellRadius;
-        public float DelayBetweenCast;
-        public float Damage;
-        public float Speed;
+        [SerializeField] protected float _damage;
+        [SerializeField] protected float _delayBetweenCast;
+        [SerializeField] protected float _searchAreaTarget;
+        [SerializeField] protected LayerMask _targetLayer;
+        protected Collider[] _targetColliders;
 
-        private SphereCollider _myCollider;
-        private Rigidbody _myRigidbody;
-
-        private void Awake()
+        private ISpellDamaging _currentSpellDamage;
+        public ISpellDamaging CurrentSpellDamage
         {
-            _myCollider = GetComponent<SphereCollider>();
-            _myCollider.isTrigger = true;
-            _myCollider.radius = SpellRadius;
+            get => _currentSpellDamage ??= new SpellDamaging(_damage);
+            set
+            {
+                _currentSpellDamage = value ?? throw new UnityException("ISpellDamaging object cannot be null");
+            }
+        }
 
-            _myRigidbody = GetComponent<Rigidbody>();
-            _myRigidbody.isKinematic = true;
+        public float DelayBetweenCast { get => _delayBetweenCast; }
 
-            Destroy(gameObject, LifeTime);
+        protected virtual void Start()
+        {
+            _targetColliders = Physics.OverlapSphere(transform.position, _searchAreaTarget, _targetLayer);
         }
     }
 }
