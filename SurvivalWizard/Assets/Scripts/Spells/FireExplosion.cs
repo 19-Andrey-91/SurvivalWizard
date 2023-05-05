@@ -1,5 +1,8 @@
 ﻿
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
+using System.Threading;
 using UnityEditor.UIElements;
 using UnityEngine;
 
@@ -8,7 +11,21 @@ namespace SurvivalWizard.Spells
     [RequireComponent(typeof(ParticleSystem))]
     public class FireExplosion : AreaSpell
     {
+        public const string Name = "Fire explosion";
+
         [SerializeField] float _timeTakeDamaging;
+
+        private CancellationTokenSource _cancellationTokenSource;
+
+        private void OnEnable()
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+        }
+
+        private void OnDisable()
+        {
+            _cancellationTokenSource.Cancel();
+        }
 
         protected override void Start()
         {
@@ -22,13 +39,13 @@ namespace SurvivalWizard.Spells
             else
             {
                 transform.position = target.transform.position;
-                StartCoroutine(DelayExplosion(_timeTakeDamaging));
+                _ = DelayExplosion(_timeTakeDamaging, _cancellationTokenSource.Token);
             }
         }
 
-        private IEnumerator DelayExplosion(float time)
+        private async UniTaskVoid DelayExplosion(float time, CancellationToken token)
         {
-            yield return new WaitForSeconds(time);
+            await UniTask.Delay(TimeSpan.FromSeconds(time), cancellationToken: token).SuppressCancellationThrow();
             Explosion();
         }
     }

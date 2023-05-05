@@ -6,6 +6,7 @@ namespace SurvivalWizard.Spells
 {
     public class Stone : FlyingSpell
     {
+        public const string Name = "Stone";
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Enemy enemy))
