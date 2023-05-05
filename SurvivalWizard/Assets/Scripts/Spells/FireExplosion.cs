@@ -1,9 +1,7 @@
 ﻿
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
 using System.Threading;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace SurvivalWizard.Spells
@@ -45,8 +43,11 @@ namespace SurvivalWizard.Spells
 
         private async UniTaskVoid DelayExplosion(float time, CancellationToken token)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(time), cancellationToken: token).SuppressCancellationThrow();
-            Explosion();
+            bool isCancelled = await UniTask.Delay(TimeSpan.FromSeconds(time), cancellationToken: token).SuppressCancellationThrow();
+            if (isCancelled)
+            {
+                Explosion();
+            }
         }
     }
 }
