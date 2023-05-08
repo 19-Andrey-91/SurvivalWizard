@@ -15,11 +15,13 @@ namespace SurvivalWizard.UI
         [SerializeField] private GameUI _prefabGameUI;
         [SerializeField] private PauseUI _prefabPauseUI;
         [SerializeField] private GameOverUI _prefabGameOverUI;
+        [SerializeField] private SpellUpgradeUI _prefabSpellUpgradeUI;
         public StateMachineUI StateMachineUI { get; private set; }
         public IStateUI StartMenuUIState { get; private set; }
         public IStateUI GameUIState { get; private set; }
         public IStateUI PauseUIState { get; private set; }
         public IStateUI GameOverUIState { get; private set; }
+        public IStateUI UpgradeState { get; private set; }
 
         private void Awake()
         {
@@ -28,6 +30,7 @@ namespace SurvivalWizard.UI
             GameUIState = new GameUIState(this, Instantiate(_prefabGameUI));
             PauseUIState = new PauseUIState(this, Instantiate(_prefabPauseUI));
             GameOverUIState = new GameOverUIState(this, Instantiate(_prefabGameOverUI));
+            UpgradeState = new UpgradeUIState(this, Instantiate(_prefabSpellUpgradeUI));
         }
         private void Start()
         {

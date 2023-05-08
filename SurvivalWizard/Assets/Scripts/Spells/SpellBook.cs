@@ -17,15 +17,6 @@ namespace SurvivalWizard.Spells
 
         CancellationTokenSource _cancellationTokenSource;
 
-        public void SpellUpgrade()
-        {
-            foreach (Spell spell in Spells)
-            {
-                spell.CurrentSpellDamage = new SpellDurationDamage(spell.CurrentSpellDamage, 3000, 10, 10);
-                spell.CurrentSpellDamage = new SpellDurationDamage(spell.CurrentSpellDamage, 3000, 10, 10);
-            }
-        }
-
         public void Fire(Transform pointSpawnSpell)
         {
             _cancellationTokenSource = new CancellationTokenSource();

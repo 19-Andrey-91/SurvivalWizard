@@ -49,3 +49,4 @@ MonoBehaviour:
   _prefabGameUI: {fileID: 9172521688866317824, guid: 0d2427e3e6c5a9149b90dc9da33048b9, type: 3}
   _prefabPauseUI: {fileID: 3375737069584435672, guid: 697ff50cedf442c4dad703e0720eefb6, type: 3}
   _prefabGameOverUI: {fileID: 6965535400698962262, guid: 920eaeb11c71b494780021cfe8de26d0, type: 3}
+  _prefabSpellUpgradeUI: {fileID: 6257632071153335388, guid: 1250d1a879aed06418a3da822eac08c4, type: 3}

@@ -29,6 +29,7 @@ namespace SurvivalWizard.UI.StateUI
             _player.OnDiedEvent += ChangeUIStateToGameOver;
             _player.OnTakeDamageEvent += UpdateHPBar;
             _enemySpawner.OnUpdatedCountKillsEvent += UpdateCountKills;
+            _enemySpawner.OnUpgradeSkill += ChangeUIStateToUpgrade;
             _gameUI.PauseButton.onClick.AddListener(ChangeUIStateToPause);
 
             UpdateHPBar(_player);
@@ -47,6 +48,7 @@ namespace SurvivalWizard.UI.StateUI
 
         public void Exit()
         {
+            _enemySpawner.OnUpgradeSkill -= ChangeUIStateToUpgrade;
             _enemySpawner.OnUpdatedCountKillsEvent -= UpdateCountKills;
             _player.OnTakeDamageEvent -= UpdateHPBar;
             _player.OnDiedEvent -= ChangeUIStateToGameOver;
@@ -63,6 +65,11 @@ namespace SurvivalWizard.UI.StateUI
         private void ChangeUIStateToPause()
         {
             _loaderUI.StateMachineUI.ChangeState(_loaderUI.PauseUIState);
+        }
+
+        private void ChangeUIStateToUpgrade()
+        {
+            _loaderUI.StateMachineUI.ChangeState(_loaderUI.UpgradeState);
         }
     }
 }

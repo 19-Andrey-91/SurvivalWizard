@@ -662,6 +662,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2150760600194169738, guid: 50d7e5d03da5fd14abc9b8ca0372949b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2150760600194169739, guid: 50d7e5d03da5fd14abc9b8ca0372949b, type: 3}
       propertyPath: m_Name
       value: LoaderUI

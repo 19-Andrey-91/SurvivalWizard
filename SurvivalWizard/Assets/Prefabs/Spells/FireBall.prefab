@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2581907051b2e0f408c7dfa3fa42ed24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nameSpell: Fireball
   _damage: 20
   _delayBetweenCast: 1.5
   _searchAreaTarget: 10

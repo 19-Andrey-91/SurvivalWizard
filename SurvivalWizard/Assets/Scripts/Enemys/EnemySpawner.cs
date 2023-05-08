@@ -11,6 +11,7 @@ namespace SurvivalWizard.Enemys
     public class EnemySpawner : MonoBehaviour
     {
         public event Action<int> OnUpdatedCountKillsEvent;
+        public event Action OnUpgradeSkill;
 
         [Header("Enemy Prefabs")]
         [SerializeField] private List<PoolData<Enemy>> _enemyPoolData;
@@ -78,6 +79,11 @@ namespace SurvivalWizard.Enemys
         {
             _countKills++;
             OnUpdatedCountKillsEvent?.Invoke(_countKills);
+
+            if(_countKills % 100 == 0)
+            {
+                OnUpgradeSkill?.Invoke();
+            }
         }
 
         private void ReleaseEnemyAfterDeath(Entity obj)

@@ -19705,7 +19705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac6735859a6267448509fe4c67490ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _nameSpell: Fire explosion
+  _damage: 100
   _delayBetweenCast: 2
   _searchAreaTarget: 10
   _targetLayer:

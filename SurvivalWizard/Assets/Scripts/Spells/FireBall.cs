@@ -6,8 +6,6 @@ namespace SurvivalWizard.Spells
 {
     public class Fireball : FlyingSpell
     {
-        public const string Name = "Fireball";
-
         protected override void Start()
         {
             base.Start();

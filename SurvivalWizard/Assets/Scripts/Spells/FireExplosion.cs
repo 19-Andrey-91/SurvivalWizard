@@ -9,8 +9,6 @@ namespace SurvivalWizard.Spells
     [RequireComponent(typeof(ParticleSystem))]
     public class FireExplosion : AreaSpell
     {
-        public const string Name = "Fire explosion";
-
         [SerializeField] float _timeTakeDamaging;
 
         private CancellationTokenSource _cancellationTokenSource;
@@ -44,7 +42,7 @@ namespace SurvivalWizard.Spells
         private async UniTaskVoid DelayExplosion(float time, CancellationToken token)
         {
             bool isCancelled = await UniTask.Delay(TimeSpan.FromSeconds(time), cancellationToken: token).SuppressCancellationThrow();
-            if (isCancelled)
+            if (!isCancelled)
             {
                 Explosion();
             }

@@ -1,11 +1,10 @@
-﻿
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SurvivalWizard.Spells
 {
     public abstract class Spell : MonoBehaviour
     {
+        [SerializeField] private string _nameSpell;
         [SerializeField] protected float _damage;
         [SerializeField] protected float _delayBetweenCast;
         [SerializeField] protected float _searchAreaTarget;
@@ -13,6 +12,9 @@ namespace SurvivalWizard.Spells
         protected Collider[] _targetColliders;
 
         private ISpellDamaging _currentSpellDamage;
+
+        public string NameSpell { get => _nameSpell; }
+
         public ISpellDamaging CurrentSpellDamage
         {
             get => _currentSpellDamage ??= new SpellDamaging(_damage);
