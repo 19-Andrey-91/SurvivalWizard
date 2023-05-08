@@ -7,7 +7,7 @@ using SurvivalWizard.Spells;
 
 namespace SurvivalWizard.PlayerScripts
 {
-    [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(PlayerMovement), typeof(Animator))]
     public class Player : Entity
     {
         [SerializeField] private Transform _pointSpawnSpell;
@@ -15,15 +15,16 @@ namespace SurvivalWizard.PlayerScripts
 
         private PlayerMovement _playerMovement;
         private Animator _animator;
+        private PlayerAnimationController _playerAnimationController;
 
         public Transform PointSpawnSpell { get => _pointSpawnSpell; }
-        public Animator PlayerAnimator { get { return _animator ??= GetComponentInChildren<Animator>(); } }
-
+        public Animator PlayerAnimator { get => _animator ??= GetComponent<Animator>(); }
+        public PlayerMovement PlayerMovement { get => _playerMovement ??= GetComponent<PlayerMovement>(); }
         public SpellBook SpellBook { get => _spellBook ??= new SpellBook(); }
 
         private void Awake()
         {
-            _playerMovement = GetComponent<PlayerMovement>();
+            _playerAnimationController = new PlayerAnimationController(this, PlayerAnimator);
         }
 
         private void Start()
@@ -39,9 +40,15 @@ namespace SurvivalWizard.PlayerScripts
             SpellBook.Fire(_pointSpawnSpell);
         }
 
+        private void OnEnable()
+        {
+            _playerAnimationController.Subscribe();
+        }
+
         private void OnDisable()
         {
             SpellBook.StopFire();
+            _playerAnimationController.Unsubscribe();
         }
 
         private void OnTriggerEnter(Collider other)

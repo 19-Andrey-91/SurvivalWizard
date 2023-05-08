@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3655925587152505213}
   - component: {fileID: 3318376365442897467}
   - component: {fileID: 5407778450110943450}
+  - component: {fileID: 2490351414818455745}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -97,6 +98,26 @@ MonoBehaviour:
     - {fileID: 3650114381809995551, guid: 0e5e569b5a3bc994b810816a7a4c4635, type: 3}
     - {fileID: 6793451876133578581, guid: e7f6fc654202e3d4cb160b3a5be4a0c6, type: 3}
     - {fileID: 3833986422597984384, guid: 7fe5445738612c644a8e7cfe9720e248, type: 3}
+--- !u!95 &2490351414818455745
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529143105015775154}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: bed7a092d53e7c748bd65db98cebf9d6, type: 3}
+  m_Controller: {fileID: 9100000, guid: 979403e528118e845912e69722e662d4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &6169963573577500681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -439,6 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 136275810615880682, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
+    - {fileID: 8134133466846984739, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

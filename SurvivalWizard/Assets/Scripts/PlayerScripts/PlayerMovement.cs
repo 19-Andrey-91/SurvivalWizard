@@ -9,7 +9,7 @@ namespace SurvivalWizard.PlayerScripts
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour
     {
-        public event Action<bool> OnPlayerStoppedEvent;
+        public event Action<bool> OnPlayerMoveEvent;
 
         [SerializeField] private float _rotationSpeed = 10f;
 
@@ -50,7 +50,7 @@ namespace SurvivalWizard.PlayerScripts
 
         private void Move(InputAction.CallbackContext obj)
         {
-            OnPlayerStoppedEvent?.Invoke(false);
+            OnPlayerMoveEvent?.Invoke(true);
             Vector2 inputDirection = obj.ReadValue<Vector2>();
             _moveDirection.x = inputDirection.x * _speed;
             _moveDirection.z = inputDirection.y * _speed;
@@ -59,7 +59,7 @@ namespace SurvivalWizard.PlayerScripts
         private void StopMove(InputAction.CallbackContext obj)
         {
             _moveDirection = Vector3.zero;
-            OnPlayerStoppedEvent?.Invoke(true);
+            OnPlayerMoveEvent?.Invoke(false);
         }
 
         public void ChangeSpeed(float speed)
