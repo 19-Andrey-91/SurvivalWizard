@@ -64,12 +64,12 @@ namespace SurvivalWizard.Base
             return value;
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             _cancellationTokenSource = new CancellationTokenSource();
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             _cancellationTokenSource.Cancel();
         }

@@ -1,6 +1,5 @@
 ﻿
 using Cysharp.Threading.Tasks;
-using SurvivalWizard.Spells.Upgrade;
 using System;
 using System.Collections.Generic;
 using System.Threading;

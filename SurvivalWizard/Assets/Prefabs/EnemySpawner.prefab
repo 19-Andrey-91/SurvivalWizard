@@ -51,14 +51,19 @@ MonoBehaviour:
     PoolCount: 200
     PoolMaxCount: 300
     Container: {fileID: 7665139873582467892}
-  - Prefab: {fileID: 9102666740534849626, guid: 0ba0f6eee23032e4e83d421e739dc905, type: 3}
+  - Prefab: {fileID: -2930520827874377612, guid: 11eed2dfd1329ab4db9e7f27b8e628b7, type: 3}
+    PoolCount: 200
+    PoolMaxCount: 300
+    Container: {fileID: 5702584500744200233}
+  - Prefab: {fileID: -6271036286877955364, guid: 66ae442726d1cf4428dacb34edd61ac4, type: 3}
     PoolCount: 200
     PoolMaxCount: 300
     Container: {fileID: 5702584500744200233}
   _spawnRadius: 30
   _minDistanceToPlayer: 15
-  _delayBetweenSpawn: 0.1
+  _delayBetweenSpawn: 0.3
   _enemyWaveChangeTime: 10
+  _killToUpgrade: 30
 --- !u!1 &5911324269530908734
 GameObject:
   m_ObjectHideFlags: 0

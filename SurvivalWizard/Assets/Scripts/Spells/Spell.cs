@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace SurvivalWizard.Spells
 {
@@ -26,9 +28,13 @@ namespace SurvivalWizard.Spells
 
         public float DelayBetweenCast { get => _delayBetweenCast; }
 
-        protected virtual void Start()
+        protected void SearchTarget(List<Collider> exceptTargets = null)
         {
-            _targetColliders = Physics.OverlapSphere(transform.position, _searchAreaTarget, _targetLayer);
+            _targetColliders = Physics.OverlapSphere(transform.position, _searchAreaTarget, _targetLayer); ;
+            if (exceptTargets != null)
+            {
+                _targetColliders = _targetColliders.Except(exceptTargets).ToArray();
+            }
         }
     }
 }

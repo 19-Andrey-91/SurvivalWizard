@@ -23,9 +23,9 @@ namespace SurvivalWizard.Spells
             _cancellationTokenSource.Cancel();
         }
 
-        protected override void Start()
+        private void Start()
         {
-            base.Start();
+            SearchTarget();
 
             Collider target = GetCollider.GetRandomCollider(_targetColliders);
             if (target == null)

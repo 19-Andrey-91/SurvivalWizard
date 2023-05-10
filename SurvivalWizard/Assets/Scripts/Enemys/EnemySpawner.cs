@@ -20,12 +20,14 @@ namespace SurvivalWizard.Enemys
         [SerializeField] private float _minDistanceToPlayer = 5f;
         [SerializeField] private float _delayBetweenSpawn;
         [SerializeField] private float _enemyWaveChangeTime;
+        [Header("Upgrade")]
+        [SerializeField] private int _killToUpgrade;
 
         private List<ObjectPool<Enemy>> _enemyPools;
 
         private Transform _player;
-        private float _timer;
-        private float _allTime;
+        private float _spawnTimer;
+        private float _waveTimer;
         private int _indexPool = 0;
         private int _countKills = 0;
 
@@ -80,7 +82,7 @@ namespace SurvivalWizard.Enemys
             _countKills++;
             OnUpdatedCountKillsEvent?.Invoke(_countKills);
 
-            if(_countKills % 100 == 0)
+            if(_countKills % _killToUpgrade == 0)
             {
                 OnUpgradeSkill?.Invoke();
             }
@@ -96,16 +98,17 @@ namespace SurvivalWizard.Enemys
 
         private void Update()
         {
-            _allTime += Time.deltaTime;
-            _timer += Time.deltaTime;
-            if (_timer <= _delayBetweenSpawn)
+            _waveTimer += Time.deltaTime;
+            _spawnTimer += Time.deltaTime;
+            if (_spawnTimer <= _delayBetweenSpawn)
             {
                 return;
             }
 
-            _timer -= _delayBetweenSpawn;
-            if(_allTime > _enemyWaveChangeTime && _indexPool < _enemyPools.Count - 1)
+            _spawnTimer -= _delayBetweenSpawn;
+            if(_waveTimer > _enemyWaveChangeTime && _indexPool < _enemyPools.Count - 1)
             {
+                _waveTimer -= _enemyWaveChangeTime;
                 _indexPool++;
             }
             CheckDistanceToPlayerAndSetPosition(_enemyPools[_indexPool].Get);

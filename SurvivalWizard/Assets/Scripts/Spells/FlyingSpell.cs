@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace SurvivalWizard.Spells
 {
@@ -22,6 +23,20 @@ namespace SurvivalWizard.Spells
             _myRigidbody.isKinematic = true;
 
             Destroy(gameObject, _lifeTime);
+        }
+
+        protected void SetRotation()
+        {
+            Collider nearestTarget = GetCollider.GetNearestCollider(transform, _targetColliders);
+
+            if (nearestTarget == null)
+            {
+                return;
+            }
+
+            Vector3 direction = nearestTarget.transform.position - transform.position;
+            direction.y = 0;
+            transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
         }
 
         protected virtual void Update()

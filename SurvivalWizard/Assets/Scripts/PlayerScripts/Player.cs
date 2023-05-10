@@ -4,6 +4,7 @@ using Cinemachine;
 using SurvivalWizard.Base;
 using SurvivalWizard.Enemys;
 using SurvivalWizard.Spells;
+using UnityEditor.Experimental.GraphView;
 
 namespace SurvivalWizard.PlayerScripts
 {
@@ -40,13 +41,15 @@ namespace SurvivalWizard.PlayerScripts
             SpellBook.Fire(_pointSpawnSpell);
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             _playerAnimationController.Subscribe();
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
             SpellBook.StopFire();
             _playerAnimationController.Unsubscribe();
         }
