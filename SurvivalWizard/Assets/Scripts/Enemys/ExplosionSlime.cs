@@ -13,15 +13,6 @@ namespace SurvivalWizard.Enemys
         private MovingToTargetEnemyState _movingTargetEnemyState;
         private ExplosionEnemyState _explosionEnemyState;
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            if(_stateMachine.CurrentState != null)
-            {
-                _stateMachine.ChangeState(_stateMachine.CurrentState);
-            }
-        }
-
         protected override void Start()
         {
             base.Start();

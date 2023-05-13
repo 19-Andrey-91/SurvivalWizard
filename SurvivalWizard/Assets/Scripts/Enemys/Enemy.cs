@@ -51,6 +51,15 @@ namespace SurvivalWizard.Enemys
             _agent.speed = _speed;
         }
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            if (_stateMachine.CurrentState != null)
+            {
+                _stateMachine.ChangeState(_stateMachine.CurrentState);
+            }
+        }
+
         protected virtual void Start()
         {
             _target = GameManager.Instance.Player;
