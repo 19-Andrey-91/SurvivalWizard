@@ -28,7 +28,7 @@ namespace SurvivalWizard.Spells
 
         public float DelayBetweenCast { get => _delayBetweenCast; }
 
-        protected void SearchTarget(List<Collider> exceptTargets = null)
+        protected void SearchTargets(List<Collider> exceptTargets = null)
         {
             _targetColliders = Physics.OverlapSphere(transform.position, _searchAreaTarget, _targetLayer); ;
             if (exceptTargets != null)

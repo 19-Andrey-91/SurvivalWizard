@@ -2,7 +2,6 @@
 using SurvivalWizard.Enemys;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 namespace SurvivalWizard.Spells
 {
@@ -16,8 +15,8 @@ namespace SurvivalWizard.Spells
             {
                 _enemiesHitByProjectile.Add(other);
                 CurrentSpellDamage.ApplyDamage(enemy);
-                SearchTarget(_enemiesHitByProjectile);
-                SetRotation();
+                SearchTargets(_enemiesHitByProjectile);
+                FindNearestColliderAndSetRotation();
             }
         }
     }

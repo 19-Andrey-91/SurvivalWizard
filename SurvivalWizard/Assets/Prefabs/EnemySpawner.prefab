@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &511643581654825956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3649240879159631173}
+  m_Layer: 0
+  m_Name: Pool_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3649240879159631173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511643581654825956}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.19519907, y: 0.11646405, z: -3.9512813}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3193457031294576215}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3193457031294576213
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +62,8 @@ Transform:
   m_Children:
   - {fileID: 7665139873582467892}
   - {fileID: 5702584500744200233}
+  - {fileID: 6836071206990911011}
+  - {fileID: 3649240879159631173}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,17 +81,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPoolData:
   - Prefab: {fileID: 2453743121291988122, guid: d941199d4a58fcb45adc75ea8e37c42c, type: 3}
-    PoolCount: 200
-    PoolMaxCount: 300
+    PoolCount: 100
+    PoolMaxCount: 150
     Container: {fileID: 7665139873582467892}
-  - Prefab: {fileID: -2930520827874377612, guid: 11eed2dfd1329ab4db9e7f27b8e628b7, type: 3}
-    PoolCount: 200
-    PoolMaxCount: 300
+  - Prefab: {fileID: 4419329259032742580, guid: 11eed2dfd1329ab4db9e7f27b8e628b7, type: 3}
+    PoolCount: 100
+    PoolMaxCount: 150
     Container: {fileID: 5702584500744200233}
-  - Prefab: {fileID: -6271036286877955364, guid: 66ae442726d1cf4428dacb34edd61ac4, type: 3}
-    PoolCount: 200
-    PoolMaxCount: 300
-    Container: {fileID: 5702584500744200233}
+  - Prefab: {fileID: -7313747464798185000, guid: 66ae442726d1cf4428dacb34edd61ac4, type: 3}
+    PoolCount: 100
+    PoolMaxCount: 150
+    Container: {fileID: 6836071206990911011}
+  - Prefab: {fileID: 7597336524496667615, guid: 72c47fdc43d84b243bdc109c284341d6, type: 3}
+    PoolCount: 100
+    PoolMaxCount: 150
+    Container: {fileID: 3649240879159631173}
   _spawnRadius: 30
   _minDistanceToPlayer: 15
   _delayBetweenSpawn: 0.3
@@ -118,6 +155,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6659527215844283642}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.19519907, y: 0.11646405, z: -3.9512813}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3193457031294576215}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9082524300110239920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6836071206990911011}
+  m_Layer: 0
+  m_Name: Pool_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6836071206990911011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082524300110239920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.19519907, y: 0.11646405, z: -3.9512813}
   m_LocalScale: {x: 1, y: 1, z: 1}

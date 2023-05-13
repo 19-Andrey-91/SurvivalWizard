@@ -8,8 +8,8 @@ namespace SurvivalWizard.Spells
     {
         private  void Start()
         {
-            SearchTarget();
-            SetRotation();
+            SearchTargets();
+            FindNearestColliderAndSetRotation();
         }
 
         private void OnTriggerEnter(Collider other)

@@ -25,7 +25,7 @@ namespace SurvivalWizard.Spells
             Destroy(gameObject, _lifeTime);
         }
 
-        protected void SetRotation()
+        protected void FindNearestColliderAndSetRotation()
         {
             Collider nearestTarget = GetCollider.GetNearestCollider(transform, _targetColliders);
 
@@ -33,8 +33,12 @@ namespace SurvivalWizard.Spells
             {
                 return;
             }
+            SetRotation(nearestTarget);
+        }
 
-            Vector3 direction = nearestTarget.transform.position - transform.position;
+        protected void SetRotation(Collider target)
+        {
+            Vector3 direction = target.transform.position - transform.position;
             direction.y = 0;
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
         }

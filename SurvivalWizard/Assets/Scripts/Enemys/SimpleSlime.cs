@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace SurvivalWizard.Enemys
 {
-    public class MovingEnemyToTarget : Enemy
+    public class SimpleSlime : Enemy
     {
-        private EnemyMovingTargetState _enemyMovingTargetState;
+        private MovingToTargetEnemyState _movingTargetEnemyState;
         protected override void Start()
         {
             base.Start();
-            _enemyMovingTargetState = new EnemyMovingTargetState(_agent, _target);
-            _stateMachine.Initialize(_enemyMovingTargetState);
+            _movingTargetEnemyState = new MovingToTargetEnemyState(this, _target.transform);
+            _stateMachine.Initialize(_movingTargetEnemyState);
         }
 
         private void Update()

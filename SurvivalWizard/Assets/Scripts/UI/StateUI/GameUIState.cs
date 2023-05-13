@@ -35,7 +35,7 @@ namespace SurvivalWizard.UI.StateUI
             UpdateHPBar(_player);
         }
 
-        private void UpdateHPBar(Entity player)
+        private void UpdateHPBar(Base.Entity player)
         {
             _gameUI.HPBarText.text = $"{player.Hp}/{player.MaxHp}";
             _gameUI.HPBarImage.fillAmount = player.Hp / player.MaxHp;
@@ -57,7 +57,7 @@ namespace SurvivalWizard.UI.StateUI
             _gameUI.gameObject.SetActive(false);
         }
 
-        private void ChangeUIStateToGameOver(Entity player)
+        private void ChangeUIStateToGameOver(Base.Entity player)
         {
             _loaderUI.StateMachineUI.ChangeState(_loaderUI.GameOverUIState);
         }

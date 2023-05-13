@@ -25,7 +25,7 @@ namespace SurvivalWizard.Spells
 
         private void Start()
         {
-            SearchTarget();
+            SearchTargets();
 
             Collider target = GetCollider.GetRandomCollider(_targetColliders);
             if (target == null)

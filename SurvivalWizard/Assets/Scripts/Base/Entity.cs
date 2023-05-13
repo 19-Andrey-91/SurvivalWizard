@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace SurvivalWizard.Base
@@ -16,7 +15,7 @@ namespace SurvivalWizard.Base
         [SerializeField] protected float _maxHp;
         [SerializeField] protected float _damage;
         [SerializeField] protected float _speed;
-        [SerializeField] protected float _attackSpeed;
+        [SerializeField] protected float _delayBetweenAttack;
 
         private CancellationTokenSource _cancellationTokenSource;
 
@@ -36,10 +35,15 @@ namespace SurvivalWizard.Base
         public float MaxHp { get => _maxHp; set => _maxHp = CheckValue(value); }
         public float Damage { get => _damage; set => CheckValue(value); }
         public float Speed { get => _speed; set => _speed = CheckValue(value); }
-        public float AttackSpeed { get => _attackSpeed; set => _attackSpeed = CheckValue(value); }
+        public float DelayBetweenAttack { get => _delayBetweenAttack; set => _delayBetweenAttack = CheckValue(value); }
 
         public bool TakeDamage(float damage)
         {
+            if(_hp <= 0)
+            {
+                return false;
+            }
+
             _hp -= damage;
             OnTakeDamageEvent?.Invoke(this);
             Debug.Log($"{this}, {damage}");

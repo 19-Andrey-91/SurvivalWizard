@@ -1,18 +1,19 @@
-    public class StateMachineEnemy
-    {
-        public StateEnemy CurrentState { get; private set; }
 
-        public void Initialize(StateEnemy startState)
+public class StateMachineEnemy
+    {
+        public IStateEnemy CurrentState { get; private set; }
+
+        public void Initialize(IStateEnemy startState)
         {
             CurrentState = startState;
             CurrentState.Enter();
         }
 
-        public void ChangeState(StateEnemy newState)
+        public void ChangeState(IStateEnemy newState)
         {
             CurrentState.Exit();
             CurrentState = newState;
             CurrentState.Enter();
         }
-    }
+}
 

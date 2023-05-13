@@ -228,9 +228,10 @@ GameObject:
   - component: {fileID: 6118174221721670358}
   - component: {fileID: -8873734114125765737}
   - component: {fileID: -3695811427642070640}
-  - component: {fileID: -6271036286877955364}
+  - component: {fileID: -7313747464798185000}
+  - component: {fileID: 7099736582721847688}
   m_Layer: 6
-  m_Name: Slime_03 Leaf
+  m_Name: LeafSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,7 +297,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-6271036286877955364
+--- !u!114 &-7313747464798185000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -305,14 +306,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 6891580169314388076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720d1016e3883174cbdab7366f765215, type: 3}
+  m_Script: {fileID: 11500000, guid: 03813807a16be8046b5c077c2237df00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 600
-  _maxHp: 600
+  _hp: 100
+  _maxHp: 100
   _damage: 10
-  _speed: 1
-  _attackSpeed: 0
+  _speed: 4
+  _delayBetweenAttack: 2
+  _wanderRadius: 10
+  _wanderTimer: 3
+  _spellPrefab: {fileID: -434299369541247163, guid: de6143dee8cd2d44b86e6c61e8388bff, type: 3}
+  _numberAttack: 3
+--- !u!95 &7099736582721847688
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6891580169314388076}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 707b944f06051734793367fc0c69bc07, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7647819984296596885
 GameObject:
   m_ObjectHideFlags: 0

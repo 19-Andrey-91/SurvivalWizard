@@ -104,14 +104,23 @@ namespace SurvivalWizard.Enemys
             {
                 return;
             }
-
             _spawnTimer -= _delayBetweenSpawn;
-            if(_waveTimer > _enemyWaveChangeTime && _indexPool < _enemyPools.Count - 1)
+            ChangePoolIndex();
+            CheckDistanceToPlayerAndSetPosition(_enemyPools[_indexPool].Get);
+        }
+
+        private void ChangePoolIndex()
+        {
+            if (_waveTimer > _enemyWaveChangeTime)
             {
                 _waveTimer -= _enemyWaveChangeTime;
+                if (_indexPool >= _enemyPools.Count - 1)
+                {
+                    _indexPool = 0;
+                    return;
+                }
                 _indexPool++;
             }
-            CheckDistanceToPlayerAndSetPosition(_enemyPools[_indexPool].Get);
         }
 
         private void CheckDistanceToPlayerAndSetPosition(Func<Enemy> func)
