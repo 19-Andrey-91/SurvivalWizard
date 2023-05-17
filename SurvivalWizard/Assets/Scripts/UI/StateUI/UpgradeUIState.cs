@@ -1,4 +1,5 @@
 ﻿
+using SurvivalWizard.Base;
 using SurvivalWizard.UI.UIScripts;
 using UnityEngine;
 

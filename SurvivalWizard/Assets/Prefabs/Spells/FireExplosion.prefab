@@ -19714,6 +19714,7 @@ MonoBehaviour:
     m_Bits: 64
   _damageRadius: 5
   _timeTakeDamaging: 0.2
+  _nameSoundExplosion: FireExplosion
 --- !u!1 &4593184484999142886
 GameObject:
   m_ObjectHideFlags: 0

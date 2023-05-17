@@ -14,8 +14,9 @@ namespace SurvivalWizard.Spells
 
         public float Speed { get => _speed; }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _myCollider = GetComponent<SphereCollider>();
             _myCollider.isTrigger = true;
 

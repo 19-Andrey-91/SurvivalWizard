@@ -9,8 +9,10 @@ namespace SurvivalWizard.Spells
     [RequireComponent(typeof(ParticleSystem))]
     public class FireExplosion : AreaSpell
     {
-        [SerializeField] float _timeTakeDamaging;
-
+        [SerializeField] private float _timeTakeDamaging;
+        [Header("Sound")]
+        [SerializeField] private string _nameSoundExplosion;
+        
         private CancellationTokenSource _cancellationTokenSource;
 
         private void OnEnable()
@@ -45,6 +47,7 @@ namespace SurvivalWizard.Spells
             if (!isCancelled)
             {
                 Explosion();
+                _soundManager.EffectsAudioSource.PlayOneShot(_soundManager.Sounds.GetValueDictionary(_nameSoundExplosion));
             }
         }
     }

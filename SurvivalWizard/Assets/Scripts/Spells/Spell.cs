@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SurvivalWizard.Base;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace SurvivalWizard.Spells
         [SerializeField] protected float _searchAreaTarget;
         [SerializeField] protected LayerMask _targetLayer;
         protected Collider[] _targetColliders;
+        protected SoundManager _soundManager;
 
         private ISpellDamaging _currentSpellDamage;
 
@@ -27,6 +29,11 @@ namespace SurvivalWizard.Spells
         }
 
         public float DelayBetweenCast { get => _delayBetweenCast; }
+
+        protected virtual void Awake()
+        {
+            _soundManager = SoundManager.Instance;
+        }
 
         protected void SearchTargets(List<Collider> exceptTargets = null)
         {

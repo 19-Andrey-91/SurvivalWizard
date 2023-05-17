@@ -69,7 +69,7 @@ namespace SurvivalWizard.UI.StateUI
 
         private void ChangeUIStateToUpgrade()
         {
-            _loaderUI.StateMachineUI.ChangeState(_loaderUI.UpgradeState);
+            _loaderUI.StateMachineUI.ChangeState(_loaderUI.UpgradeUIState);
         }
     }
 }
