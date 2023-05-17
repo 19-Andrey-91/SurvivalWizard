@@ -14,6 +14,7 @@ namespace SurvivalWizard.Base
 
         private void Start()
         {
+            DontDestroyOnLoad(this);
             MusicAudioSource.clip = Sounds.GetValueDictionary("StartMusic");
             MusicAudioSource.Play();
         }
