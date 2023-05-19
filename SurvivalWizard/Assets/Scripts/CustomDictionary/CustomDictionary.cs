@@ -12,7 +12,7 @@ public class CustomDictionary<T1, T2>
 {
     [SerializeField] private List<KeyAndValue<T1, T2>> _dictionary;
 
-    public T2 GetValueDictionary(T1 dictionaryKey)
+    public T2 GetValue(T1 dictionaryKey)
     {
         T1 _key = dictionaryKey;
         T2 value = default;

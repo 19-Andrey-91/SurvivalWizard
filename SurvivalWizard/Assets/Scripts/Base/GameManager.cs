@@ -16,8 +16,9 @@ namespace SurvivalWizard.Base
         public Player Player { get => _player; }
         public EnemySpawner EnemySpawner { get => _enemySpawner; }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Instantiate(_map);
             _player = Instantiate(_prefabPlayer, _pointSpawnPlayer);
             _enemySpawner = Instantiate(_enemySpawner);

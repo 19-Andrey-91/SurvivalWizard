@@ -1,5 +1,6 @@
 ﻿
 using Cysharp.Threading.Tasks;
+using SurvivalWizard.Sounds;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -47,7 +48,7 @@ namespace SurvivalWizard.Spells
             if (!isCancelled)
             {
                 Explosion();
-                _soundManager.EffectsAudioSource.PlayOneShot(_soundManager.Sounds.GetValueDictionary(_nameSoundExplosion));
+                SoundManager.Instance.PlaySound(_nameSoundExplosion, transform.position);
             }
         }
     }

@@ -1,26 +1,39 @@
 
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+[DisallowMultipleComponent]
+public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    private static T instance;
+    private static T _instance;
 
     public static T Instance
     {
         get
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = FindObjectOfType<T>();
+                _instance = FindObjectOfType<T>();
 
-                if (instance == null)
+                if (_instance == null)
                 {
                     var singletonObject = new GameObject();
-                    instance = singletonObject.AddComponent<T>();
+                    _instance = singletonObject.AddComponent<T>();
                     singletonObject.name = typeof(T).ToString() + "(Singleton)";
                 }
             }
-            return instance;
+            return _instance;
+        }
+    }
+
+    protected virtual void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = (T)this;
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
         }
     }
 }

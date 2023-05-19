@@ -13,7 +13,6 @@ namespace SurvivalWizard.Spells
         [SerializeField] protected float _searchAreaTarget;
         [SerializeField] protected LayerMask _targetLayer;
         protected Collider[] _targetColliders;
-        protected SoundManager _soundManager;
 
         private ISpellDamaging _currentSpellDamage;
 
@@ -22,18 +21,10 @@ namespace SurvivalWizard.Spells
         public ISpellDamaging CurrentSpellDamage
         {
             get => _currentSpellDamage ??= new SpellDamaging(_damage);
-            set
-            {
-                _currentSpellDamage = value ?? throw new UnityException("ISpellDamaging object cannot be null");
-            }
+            set => _currentSpellDamage = value ?? throw new UnityException("ISpellDamaging object cannot be null");
         }
 
         public float DelayBetweenCast { get => _delayBetweenCast; }
-
-        protected virtual void Awake()
-        {
-            _soundManager = SoundManager.Instance;
-        }
 
         protected void SearchTargets(List<Collider> exceptTargets = null)
         {

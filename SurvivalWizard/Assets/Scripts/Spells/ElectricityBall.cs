@@ -1,5 +1,6 @@
 ﻿
 using SurvivalWizard.Enemys;
+using SurvivalWizard.Sounds;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace SurvivalWizard.Spells
         {
             if (other.TryGetComponent(out Enemy enemy))
             {
-                _soundManager.EffectsAudioSource.PlayOneShot(_soundManager.Sounds.GetValueDictionary(_nameSoundRicochet));
+                SoundManager.Instance.PlaySound(_nameSoundRicochet, transform.position);
                 _enemiesHitByProjectile.Add(other);
                 CurrentSpellDamage.ApplyDamage(enemy);
                 SearchTargets(_enemiesHitByProjectile);

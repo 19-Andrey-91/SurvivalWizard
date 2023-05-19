@@ -1,5 +1,6 @@
 ﻿
 using SurvivalWizard.Enemys;
+using SurvivalWizard.Sounds;
 using UnityEngine;
 
 namespace SurvivalWizard.Spells
@@ -8,11 +9,11 @@ namespace SurvivalWizard.Spells
     {
         [Header("Sound")]
         [SerializeField] private string _nameFireballSound;
-        private  void Start()
+        private void Start()
         {
             SearchTargets();
             FindNearestColliderAndSetRotation();
-            _soundManager.EffectsAudioSource.PlayOneShot(_soundManager.Sounds.GetValueDictionary(_nameFireballSound));
+            SoundManager.Instance.PlaySound(_nameFireballSound, transform.position);
         }
 
         private void OnTriggerEnter(Collider other)
