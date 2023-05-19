@@ -20,7 +20,7 @@ namespace SurvivalWizard.Sounds
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
-            PlaySound("StartMusic");
+            PlaySound("StartMusic", true);
             TryLoadVolume();
             SetVolumeMusic(MusicVolume);
             SetVolumeEffects(EffectsVolume);
@@ -38,17 +38,22 @@ namespace SurvivalWizard.Sounds
             EffectsVolume = volume;
         }
 
-        public void PlaySound(string name)
+        public AudioSource PlaySound(string name, bool ignorePause = false)
         {
             var audioSource = CreateSound(name, _soundContainer);
+            if (ignorePause)
+            {
+                audioSource.ignoreListenerPause = ignorePause;
+            }
             audioSource.Play();
+            return audioSource;
         }
 
-        public void PlaySound(string name, Vector3 position)
+        public AudioSource PlaySound(string name, Vector3 position, bool ignorePause = false)
         {
-            var audioSource = CreateSound(name, _soundContainer);
+            var audioSource = PlaySound(name, ignorePause);
             audioSource.transform.position = position;
-            audioSource.Play();
+            return audioSource;
         }
 
         private AudioSource CreateSound(string name, Transform _soundContainer)
@@ -81,6 +86,18 @@ namespace SurvivalWizard.Sounds
             MusicVolume = 1f;
             EffectsVolume = 1f;
             return false;
+        }
+
+        public void AudioPause(bool pause)
+        {
+            if (pause)
+            {
+                AudioListener.pause = true;
+            }
+            else
+            {
+                AudioListener.pause = false;
+            }
         }
     }
 }

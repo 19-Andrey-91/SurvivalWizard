@@ -1,6 +1,7 @@
 ﻿using SurvivalWizard.Base;
 using SurvivalWizard.Enemys;
 using SurvivalWizard.PlayerScripts;
+using SurvivalWizard.Sounds;
 using SurvivalWizard.UI.UIScripts;
 using UnityEngine;
 
@@ -25,6 +26,8 @@ namespace SurvivalWizard.UI.StateUI
             _enemySpawner = GameManager.Instance.EnemySpawner;
 
             _gameUI.gameObject.SetActive(true);
+
+            SoundManager.Instance.AudioPause(false);
 
             _player.OnDiedEvent += ChangeUIStateToGameOver;
             _player.OnTakeDamageEvent += UpdateHPBar;
@@ -53,6 +56,8 @@ namespace SurvivalWizard.UI.StateUI
             _player.OnTakeDamageEvent -= UpdateHPBar;
             _player.OnDiedEvent -= ChangeUIStateToGameOver;
             _gameUI.PauseButton.onClick.RemoveListener(ChangeUIStateToPause);
+
+            SoundManager.Instance.AudioPause(true);
 
             _gameUI.gameObject.SetActive(false);
         }
