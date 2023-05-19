@@ -46,7 +46,6 @@ namespace SurvivalWizard.Base
 
             _hp -= damage;
             OnTakeDamageEvent?.Invoke(this);
-            Debug.Log($"{this}, {damage}");
 
             if (_hp <= 0)
             {

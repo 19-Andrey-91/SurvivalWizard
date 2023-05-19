@@ -87,17 +87,5 @@ namespace SurvivalWizard.Sounds
             EffectsVolume = 1f;
             return false;
         }
-
-        public void AudioPause(bool pause)
-        {
-            if (pause)
-            {
-                AudioListener.pause = true;
-            }
-            else
-            {
-                AudioListener.pause = false;
-            }
-        }
     }
 }

@@ -27,7 +27,7 @@ namespace SurvivalWizard.UI.StateUI
 
             _gameUI.gameObject.SetActive(true);
 
-            SoundManager.Instance.AudioPause(false);
+            AudioListener.pause = false;
 
             _player.OnDiedEvent += ChangeUIStateToGameOver;
             _player.OnTakeDamageEvent += UpdateHPBar;
@@ -38,7 +38,7 @@ namespace SurvivalWizard.UI.StateUI
             UpdateHPBar(_player);
         }
 
-        private void UpdateHPBar(Base.Entity player)
+        private void UpdateHPBar(Entity player)
         {
             _gameUI.HPBarText.text = $"{player.Hp}/{player.MaxHp}";
             _gameUI.HPBarImage.fillAmount = player.Hp / player.MaxHp;
@@ -57,12 +57,12 @@ namespace SurvivalWizard.UI.StateUI
             _player.OnDiedEvent -= ChangeUIStateToGameOver;
             _gameUI.PauseButton.onClick.RemoveListener(ChangeUIStateToPause);
 
-            SoundManager.Instance.AudioPause(true);
+            AudioListener.pause = true;
 
             _gameUI.gameObject.SetActive(false);
         }
 
-        private void ChangeUIStateToGameOver(Base.Entity player)
+        private void ChangeUIStateToGameOver(Entity player)
         {
             _loaderUI.StateMachineUI.ChangeState(_loaderUI.GameOverUIState);
         }
