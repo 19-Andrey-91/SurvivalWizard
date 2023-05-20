@@ -14,14 +14,13 @@ namespace SurvivalWizard.Sounds
         private const string _nameSaveMusicVolume = "SavesMusicVolume";
         private const string _nameSaveEffectVolume = "SavesEffectsVolume";
 
-        public float MusicVolume { get; private set; }
-        public float EffectsVolume { get; private set; }
+        public float MusicVolume { get => LoadVolume(_nameSaveMusicVolume); }
+        public float EffectsVolume { get => LoadVolume(_nameSaveEffectVolume); }
 
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
             PlaySound("StartMusic", true);
-            TryLoadVolume();
             SetVolumeMusic(MusicVolume);
             SetVolumeEffects(EffectsVolume);
         }
@@ -29,13 +28,13 @@ namespace SurvivalWizard.Sounds
         public void SetVolumeMusic(float volume)
         {
             _audioMixer.SetFloat(_musicAudioGroupVolume, Mathf.Log10(volume) * 20);
-            MusicVolume = volume;
+            PlayerPrefs.SetFloat(_nameSaveMusicVolume, volume);
         }
 
         public void SetVolumeEffects(float volume)
         {
             _audioMixer.SetFloat(_effectsAudioGroupVolume, Mathf.Log10(volume) * 20);
-            EffectsVolume = volume;
+            PlayerPrefs.SetFloat(_nameSaveEffectVolume, volume);
         }
 
         public AudioSource PlaySound(string name, bool ignorePause = false)
@@ -69,23 +68,13 @@ namespace SurvivalWizard.Sounds
             return audioSource;
         }
 
-        public void SaveVolume()
+        private float LoadVolume(string nameSave)
         {
-            PlayerPrefs.SetFloat(_nameSaveMusicVolume, MusicVolume);
-            PlayerPrefs.SetFloat(_nameSaveEffectVolume, EffectsVolume);
-        }
-
-        private bool TryLoadVolume()
-        {
-            if (PlayerPrefs.HasKey(_nameSaveMusicVolume))
+            if (PlayerPrefs.HasKey(nameSave))
             {
-                MusicVolume = PlayerPrefs.GetFloat(_nameSaveMusicVolume);
-                EffectsVolume = PlayerPrefs.GetFloat(_nameSaveEffectVolume);
-                return true;
+                return PlayerPrefs.GetFloat(nameSave);
             }
-            MusicVolume = 1f;
-            EffectsVolume = 1f;
-            return false;
+            return 1f;
         }
     }
 }

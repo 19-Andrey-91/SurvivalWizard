@@ -22,7 +22,6 @@ namespace SurvivalWizard.UI.StateUI
             _pauseUI.EffectsVolume.value = SoundManager.Instance.EffectsVolume;
             _pauseUI.MusicVolume.value = SoundManager.Instance.MusicVolume;
             _pauseUI.ContinueGameButton.onClick.AddListener(ContinueGame);
-            _pauseUI.ContinueGameButton.onClick.AddListener(SaveOptions);
             _pauseUI.EffectsVolume.onValueChanged.AddListener(SoundManager.Instance.SetVolumeEffects);
             _pauseUI.MusicVolume.onValueChanged.AddListener(SoundManager.Instance.SetVolumeMusic);
             Time.timeScale = 0f;
@@ -32,7 +31,6 @@ namespace SurvivalWizard.UI.StateUI
         {
             Time.timeScale = 1f;
             _pauseUI.ContinueGameButton.onClick.RemoveListener(ContinueGame);
-            _pauseUI.ContinueGameButton.onClick.RemoveListener(SaveOptions);
             _pauseUI.EffectsVolume.onValueChanged.RemoveListener(SoundManager.Instance.SetVolumeEffects);
             _pauseUI.MusicVolume.onValueChanged.RemoveListener(SoundManager.Instance.SetVolumeMusic);
             _pauseUI.gameObject.SetActive(false);
@@ -41,11 +39,6 @@ namespace SurvivalWizard.UI.StateUI
         private void ContinueGame()
         {
             _loaderUI.StateMachineUI.ChangeState(_loaderUI.GameUIState);
-        }
-
-        private void SaveOptions()
-        {
-            SoundManager.Instance.SaveVolume();
         }
     }
 }

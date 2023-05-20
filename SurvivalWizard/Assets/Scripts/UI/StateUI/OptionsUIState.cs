@@ -1,11 +1,6 @@
 ﻿
-
-using SurvivalWizard.Base;
 using SurvivalWizard.Sounds;
 using SurvivalWizard.UI.UIScripts;
-using System;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace SurvivalWizard.UI.StateUI
 {
@@ -28,7 +23,6 @@ namespace SurvivalWizard.UI.StateUI
             _optionsUI.EffectsVolume.onValueChanged.AddListener(SoundManager.Instance.SetVolumeEffects);
             _optionsUI.MusicVolume.onValueChanged.AddListener(SoundManager.Instance.SetVolumeMusic);
             _optionsUI.ButtonBack.onClick.AddListener(ChangeStateToStartMenuUI);
-            _optionsUI.ButtonBack.onClick.AddListener(SaveOptions);
         }
 
         public void Exit()
@@ -36,18 +30,12 @@ namespace SurvivalWizard.UI.StateUI
             _optionsUI.EffectsVolume.onValueChanged.RemoveListener(SoundManager.Instance.SetVolumeEffects);
             _optionsUI.MusicVolume.onValueChanged.RemoveListener(SoundManager.Instance.SetVolumeMusic);
             _optionsUI.ButtonBack.onClick.RemoveListener(ChangeStateToStartMenuUI);
-            _optionsUI.ButtonBack.onClick.RemoveListener(SaveOptions);
             _optionsUI.gameObject.SetActive(false);
         }
 
         private void ChangeStateToStartMenuUI()
         {
             _loaderUI.StateMachineUI.ChangeState(_loaderUI.StartMenuUIState);
-        }
-
-        private void SaveOptions()
-        {
-            SoundManager.Instance.SaveVolume();
         }
     }
 }
