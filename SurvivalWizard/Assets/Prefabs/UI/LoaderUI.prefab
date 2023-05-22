@@ -51,3 +51,4 @@ MonoBehaviour:
   _prefabGameOverUI: {fileID: 6965535400698962262, guid: 920eaeb11c71b494780021cfe8de26d0, type: 3}
   _prefabSpellUpgradeUI: {fileID: 6257632071153335388, guid: 1250d1a879aed06418a3da822eac08c4, type: 3}
   _prefabOptionsUI: {fileID: -3059798680107269698, guid: ec0e2c674262e8c44b23a5e4b77d2b60, type: 3}
+  _prefabAddingWeaponUI: {fileID: 4932208212738428353, guid: 757b84357f4b1d44bb3832849e79e7f3, type: 3}

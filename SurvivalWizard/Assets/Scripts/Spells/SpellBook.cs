@@ -1,5 +1,6 @@
 ﻿
 using Cysharp.Threading.Tasks;
+using SurvivalWizard.Spells.Upgrade;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -12,7 +13,11 @@ namespace SurvivalWizard.Spells
     {
         [SerializeField] private List<Spell> _spells;
 
-        public List<Spell> Spells { get => _spells; }
+        private List<Spell> _currentSpell = new();
+
+        public IEnumerable<Spell> Spells { get => _spells; }
+        public IEnumerable<Spell> CurrentSpells { get => _currentSpell; }
+        public bool AllSpellsLearned { get => _currentSpell.Count >= _spells.Count; }
 
         CancellationTokenSource _cancellationTokenSource;
 
@@ -20,11 +25,11 @@ namespace SurvivalWizard.Spells
         {
             _cancellationTokenSource = new CancellationTokenSource();
 
-            for (int i = 0; i < _spells.Count; i++)
+            for (int i = 0; i < _currentSpell.Count; i++)
             {
-                if (_spells[i] != null)
+                if (_currentSpell[i] != null)
                 {
-                    _ = InstantiateSpellAsync(_spells[i], pointSpawnSpell, _cancellationTokenSource.Token);
+                    _ = InstantiateSpellAsync(_currentSpell[i], pointSpawnSpell, _cancellationTokenSource.Token);
                 }
             }
         }
@@ -42,6 +47,24 @@ namespace SurvivalWizard.Spells
         public void StopFire()
         {
             _cancellationTokenSource?.Cancel();
+        }
+
+        public void LearnSpell(Spell spell)
+        {
+            if (spell != null && !_currentSpell.Contains(spell))
+            {
+                _currentSpell.Add((Spell)spell.Clone());
+            }
+        }
+
+        public void AddInstantDamage(Spell spell, float damage)
+        {
+            spell.CurrentSpellDamage = new SpellAdditionalDamage(spell.CurrentSpellDamage, damage);
+        }
+
+        public void AddDurationDamage(Spell spell, float damage, float duration, float partsAmount)
+        {
+            spell.CurrentSpellDamage = new SpellDurationDamage(spell.CurrentSpellDamage, damage, duration, partsAmount);
         }
     }
 }

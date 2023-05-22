@@ -100,7 +100,8 @@ MonoBehaviour:
   _minDistanceToPlayer: 15
   _delayBetweenSpawn: 0.3
   _enemyWaveChangeTime: 10
-  _killToUpgrade: 30
+  _killToUpgrade: 2
+  _killToAddingWeapon: 3
 --- !u!1 &5911324269530908734
 GameObject:
   m_ObjectHideFlags: 0

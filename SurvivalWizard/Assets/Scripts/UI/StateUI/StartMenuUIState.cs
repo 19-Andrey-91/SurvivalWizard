@@ -18,21 +18,23 @@ namespace SurvivalWizard.UI.StateUI
         }
         public void Enter()
         {
+            AudioListener.pause = true;
+
             _startMenuUI.gameObject.SetActive(true);
-            _startMenuUI.StartButton.onClick.AddListener(ChangeStateToGameUI);
+            _startMenuUI.StartButton.onClick.AddListener(ChangeStateToAddWeaponUI);
             _startMenuUI.OptionsButton.onClick.AddListener(ChangeStateToOptionsUI);
         }
 
         public void Exit()
         {
-            _startMenuUI.StartButton.onClick.RemoveListener(ChangeStateToGameUI);
+            _startMenuUI.StartButton.onClick.RemoveListener(ChangeStateToAddWeaponUI);
             _startMenuUI.OptionsButton.onClick.RemoveListener(ChangeStateToOptionsUI);
         }
 
-        private void ChangeStateToGameUI()
+        private void ChangeStateToAddWeaponUI()
         {
             Object.Instantiate(_prefabGameManager);
-            _loaderUI.StateMachineUI.ChangeState(_loaderUI.GameUIState);
+            _loaderUI.StateMachineUI.ChangeState(_loaderUI.AddingWeaponUIState);
             _startMenuUI.gameObject.SetActive(false);
         }
 

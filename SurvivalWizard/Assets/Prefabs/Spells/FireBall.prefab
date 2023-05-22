@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameSpell: Fireball
-  _damage: 20
+  _damage: 40
   _delayBetweenCast: 1.5
   _searchAreaTarget: 10
   _targetLayer:

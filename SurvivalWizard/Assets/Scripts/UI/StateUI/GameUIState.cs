@@ -1,7 +1,6 @@
 ﻿using SurvivalWizard.Base;
 using SurvivalWizard.Enemys;
 using SurvivalWizard.PlayerScripts;
-using SurvivalWizard.Sounds;
 using SurvivalWizard.UI.UIScripts;
 using UnityEngine;
 
@@ -32,7 +31,8 @@ namespace SurvivalWizard.UI.StateUI
             _player.OnDiedEvent += ChangeUIStateToGameOver;
             _player.OnTakeDamageEvent += UpdateHPBar;
             _enemySpawner.OnUpdatedCountKillsEvent += UpdateCountKills;
-            _enemySpawner.OnUpgradeSkill += ChangeUIStateToUpgrade;
+            _enemySpawner.OnUpgradeSkillEvent += ChangeUIStateToUpgrade;
+            _enemySpawner.OnAdditionWeaponEvent += ChangeUIStateToAddingWeapon;
             _gameUI.PauseButton.onClick.AddListener(ChangeUIStateToPause);
 
             UpdateHPBar(_player);
@@ -51,8 +51,9 @@ namespace SurvivalWizard.UI.StateUI
 
         public void Exit()
         {
-            _enemySpawner.OnUpgradeSkill -= ChangeUIStateToUpgrade;
+            _enemySpawner.OnUpgradeSkillEvent -= ChangeUIStateToUpgrade;
             _enemySpawner.OnUpdatedCountKillsEvent -= UpdateCountKills;
+            _enemySpawner.OnAdditionWeaponEvent -= ChangeUIStateToAddingWeapon;
             _player.OnTakeDamageEvent -= UpdateHPBar;
             _player.OnDiedEvent -= ChangeUIStateToGameOver;
             _gameUI.PauseButton.onClick.RemoveListener(ChangeUIStateToPause);
@@ -75,6 +76,14 @@ namespace SurvivalWizard.UI.StateUI
         private void ChangeUIStateToUpgrade()
         {
             _loaderUI.StateMachineUI.ChangeState(_loaderUI.UpgradeUIState);
+        }
+
+        private void ChangeUIStateToAddingWeapon()
+        {
+            if (!_player.SpellBook.AllSpellsLearned)
+            {
+                _loaderUI.StateMachineUI.ChangeState(_loaderUI.AddingWeaponUIState);
+            }
         }
     }
 }

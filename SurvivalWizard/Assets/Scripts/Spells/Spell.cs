@@ -1,11 +1,12 @@
 ﻿using SurvivalWizard.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace SurvivalWizard.Spells
 {
-    public abstract class Spell : MonoBehaviour
+    public abstract class Spell : MonoBehaviour, ICloneable
     {
         [SerializeField] private string _nameSpell;
         [SerializeField] protected float _damage;
@@ -33,6 +34,11 @@ namespace SurvivalWizard.Spells
             {
                 _targetColliders = _targetColliders.Except(exceptTargets).ToArray();
             }
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

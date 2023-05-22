@@ -36,8 +36,6 @@ namespace SurvivalWizard.PlayerScripts
             else throw new UnityException("CinemachineVirtualCamera is not found");
 
             _playerMovement.ChangeSpeed(Speed);
-
-            SpellBook.Fire(_pointSpawnSpell);
         }
 
         protected override void OnEnable()
@@ -59,6 +57,12 @@ namespace SurvivalWizard.PlayerScripts
             {
                 enemy.TakeDamage(Damage);
             }
+        }
+
+        public void Fire()
+        {
+            SpellBook.StopFire();
+            SpellBook.Fire(_pointSpawnSpell);
         }
     }
 }

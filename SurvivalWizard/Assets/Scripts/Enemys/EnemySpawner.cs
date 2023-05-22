@@ -11,7 +11,8 @@ namespace SurvivalWizard.Enemys
     public class EnemySpawner : MonoBehaviour
     {
         public event Action<int> OnUpdatedCountKillsEvent;
-        public event Action OnUpgradeSkill;
+        public event Action OnAdditionWeaponEvent;
+        public event Action OnUpgradeSkillEvent;
 
         [Header("Enemy Prefabs")]
         [SerializeField] private List<PoolData<Enemy>> _enemyPoolData;
@@ -22,6 +23,7 @@ namespace SurvivalWizard.Enemys
         [SerializeField] private float _enemyWaveChangeTime;
         [Header("Upgrade")]
         [SerializeField] private int _killToUpgrade;
+        [SerializeField] private int _killToAddingWeapon;
 
         private List<ObjectPool<Enemy>> _enemyPools;
 
@@ -82,9 +84,13 @@ namespace SurvivalWizard.Enemys
             _countKills++;
             OnUpdatedCountKillsEvent?.Invoke(_countKills);
 
-            if(_countKills % _killToUpgrade == 0)
+            if(_countKills % _killToAddingWeapon == 0)
             {
-                OnUpgradeSkill?.Invoke();
+                OnAdditionWeaponEvent?.Invoke();
+            }
+            else if(_countKills % _killToUpgrade == 0)
+            {
+                OnUpgradeSkillEvent?.Invoke();
             }
         }
 

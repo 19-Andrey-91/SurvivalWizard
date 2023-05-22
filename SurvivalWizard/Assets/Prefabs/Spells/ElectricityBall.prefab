@@ -70,8 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb8dbc8ebcbefa4eb708c76b1e1d78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameSpell: Electrictricity Ball
-  _damage: 10
+  _nameSpell: Electricity Ball
+  _damage: 30
   _delayBetweenCast: 1
   _searchAreaTarget: 10
   _targetLayer:

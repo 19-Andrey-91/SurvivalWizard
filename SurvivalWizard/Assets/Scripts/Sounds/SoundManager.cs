@@ -70,11 +70,7 @@ namespace SurvivalWizard.Sounds
 
         private float LoadVolume(string nameSave)
         {
-            if (PlayerPrefs.HasKey(nameSave))
-            {
-                return PlayerPrefs.GetFloat(nameSave);
-            }
-            return 1f;
+            return PlayerPrefs.GetFloat(nameSave, 1f);
         }
     }
 }
