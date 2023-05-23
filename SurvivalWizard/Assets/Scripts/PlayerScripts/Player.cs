@@ -20,11 +20,12 @@ namespace SurvivalWizard.PlayerScripts
         public Transform PointSpawnSpell { get => _pointSpawnSpell; }
         public Animator PlayerAnimator { get => _animator ??= GetComponent<Animator>(); }
         public PlayerMovement PlayerMovement { get => _playerMovement ??= GetComponent<PlayerMovement>(); }
-        public SpellBook SpellBook { get => _spellBook ??= new SpellBook(); }
+        public SpellBook SpellBook { get => _spellBook; }
 
         private void Awake()
         {
             _playerAnimationController = new PlayerAnimationController(this, PlayerAnimator);
+            SpellBook.Initialize();
         }
 
         private void Start()

@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SurvivalWizard.Spells
 {
-    public abstract class Spell : MonoBehaviour, ICloneable
+    public abstract class Spell : MonoBehaviour
     {
         [SerializeField] private string _nameSpell;
         [SerializeField] protected float _damage;
@@ -36,9 +37,9 @@ namespace SurvivalWizard.Spells
             }
         }
 
-        public object Clone()
+        public override int GetHashCode()
         {
-            return MemberwiseClone();
+            return CurrentSpellDamage.GetHashCode();
         }
     }
 }
