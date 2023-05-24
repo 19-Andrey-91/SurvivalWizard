@@ -2,6 +2,7 @@
 using SurvivalWizard.Enemys;
 using SurvivalWizard.PlayerScripts;
 using SurvivalWizard.UI.UIScripts;
+using System;
 using UnityEngine;
 
 namespace SurvivalWizard.UI.StateUI
@@ -34,8 +35,22 @@ namespace SurvivalWizard.UI.StateUI
             _enemySpawner.OnUpgradeSkillEvent += ChangeUIStateToUpgrade;
             _enemySpawner.OnAdditionWeaponEvent += ChangeUIStateToAddingWeapon;
             _gameUI.PauseButton.onClick.AddListener(ChangeUIStateToPause);
+            _player.PlayerLevel.OnIncreasedLevelEvent += UpdateCountLevel;
+            _player.PlayerLevel.OnExperienceAddedEvent += UpdateCountExperience;
 
             UpdateHPBar(_player);
+            UpdateCountExperience(0);
+        }
+
+        private void UpdateCountExperience(int xp)
+        {
+            _gameUI.XPBarText.text = $"{xp}/{_player.PlayerLevel.ToLevelUP}";
+            _gameUI.XPBarImage.fillAmount = (float)xp / _player.PlayerLevel.ToLevelUP;
+        }
+
+        private void UpdateCountLevel(int lvl)
+        {
+            _gameUI.CountLevelText.text = $"LVL : {lvl}";
         }
 
         private void UpdateHPBar(Entity player)
@@ -57,6 +72,8 @@ namespace SurvivalWizard.UI.StateUI
             _player.OnTakeDamageEvent -= UpdateHPBar;
             _player.OnDiedEvent -= ChangeUIStateToGameOver;
             _gameUI.PauseButton.onClick.RemoveListener(ChangeUIStateToPause);
+            _player.PlayerLevel.OnIncreasedLevelEvent -= UpdateCountLevel;
+            _player.PlayerLevel.OnExperienceAddedEvent -= UpdateCountExperience;
 
             AudioListener.pause = true;
 

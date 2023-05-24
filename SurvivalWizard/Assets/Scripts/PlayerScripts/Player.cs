@@ -12,6 +12,7 @@ namespace SurvivalWizard.PlayerScripts
     {
         [SerializeField] private Transform _pointSpawnSpell;
         [SerializeField] private SpellBook _spellBook;
+        [SerializeField] private PlayerLevel _playerLevel;
 
         private PlayerMovement _playerMovement;
         private Animator _animator;
@@ -21,6 +22,7 @@ namespace SurvivalWizard.PlayerScripts
         public Animator PlayerAnimator { get => _animator ??= GetComponent<Animator>(); }
         public PlayerMovement PlayerMovement { get => _playerMovement ??= GetComponent<PlayerMovement>(); }
         public SpellBook SpellBook { get => _spellBook; }
+        public PlayerLevel PlayerLevel { get => _playerLevel; }
 
         private void Awake()
         {

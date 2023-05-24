@@ -130,6 +130,8 @@ MonoBehaviour:
     - {fileID: 3650114381809995551, guid: 0e5e569b5a3bc994b810816a7a4c4635, type: 3}
     - {fileID: 6793451876133578581, guid: e7f6fc654202e3d4cb160b3a5be4a0c6, type: 3}
     - {fileID: 3833986422597984384, guid: 7fe5445738612c644a8e7cfe9720e248, type: 3}
+  _playerLevel:
+    _levelBoostFactor: 1000
 --- !u!95 &2490351414818455745
 Animator:
   serializedVersion: 5
