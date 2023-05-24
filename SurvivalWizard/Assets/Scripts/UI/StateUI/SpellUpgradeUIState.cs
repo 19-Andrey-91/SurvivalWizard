@@ -58,6 +58,7 @@ namespace SurvivalWizard.UI.StateUI
                 }
                 var spellButton = Object.Instantiate(_chooseSpellUI.PrefabSpellButtonUI, _chooseSpellUI.SpellChoiseContainer);
                 spellButton.Text.text = spell.NameSpell;
+                spellButton.Image.sprite = spell.Sprite;
                 _buttonsChooseSpells.Add(spell.NameSpell, spellButton);
                 spellButton.ButtonChooseSpell.onClick.AddListener(NextUpgrade);
 

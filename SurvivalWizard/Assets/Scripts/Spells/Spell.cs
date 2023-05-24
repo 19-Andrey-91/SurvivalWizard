@@ -1,8 +1,5 @@
-﻿using SurvivalWizard.Base;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SurvivalWizard.Spells
@@ -10,6 +7,7 @@ namespace SurvivalWizard.Spells
     public abstract class Spell : MonoBehaviour
     {
         [SerializeField] private string _nameSpell;
+        [SerializeField] private Sprite _sprite;
         [SerializeField] protected float _damage;
         [SerializeField] protected float _delayBetweenCast;
         [SerializeField] protected float _searchAreaTarget;
@@ -19,6 +17,7 @@ namespace SurvivalWizard.Spells
         private ISpellDamaging _currentSpellDamage;
 
         public string NameSpell { get => _nameSpell; }
+        public Sprite Sprite { get => _sprite; }
 
         public ISpellDamaging CurrentSpellDamage
         {
