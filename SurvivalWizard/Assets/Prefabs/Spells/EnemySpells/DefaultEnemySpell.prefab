@@ -4873,8 +4873,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameSpell: Default Enemy Spell
+  _sprite: {fileID: 0}
   _damage: 10
-  _delayBetweenCast: 1
+  _delayBetweenCast: 2
   _searchAreaTarget: 0
   _targetLayer:
     serializedVersion: 2

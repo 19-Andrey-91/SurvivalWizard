@@ -1,21 +1,24 @@
 ﻿
 using System;
-using UnityEngine;
 
 namespace SurvivalWizard.PlayerScripts
 {
-    [Serializable]
     public class PlayerLevel
     {
         public event Action<int> OnIncreasedLevelEvent;
         public event Action<int> OnExperienceAddedEvent;
 
-        [SerializeField] private int _levelBoostFactor;
+        private int _levelBoostFactor;
 
         private int _level = 1;
         private int _experience = 0;
 
         public int ToLevelUP { get => _level * _levelBoostFactor; }
+
+        public PlayerLevel(int levelBoostFactor)
+        {
+            _levelBoostFactor = levelBoostFactor;
+        }
 
         public void AddExperience(int amount)
         {

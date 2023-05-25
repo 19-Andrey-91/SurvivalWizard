@@ -161,6 +161,8 @@ MonoBehaviour:
   _damage: 1
   _speed: 10
   _delayBetweenAttack: 0
+  _numberOfExperience: 200
+  _numberOfCoins: 40
   _explosionRadius: 2
   _explosionDamage: 50
 --- !u!95 &8863253450439558801

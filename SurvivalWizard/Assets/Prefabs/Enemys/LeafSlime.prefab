@@ -314,6 +314,8 @@ MonoBehaviour:
   _damage: 10
   _speed: 4
   _delayBetweenAttack: 2
+  _numberOfExperience: 150
+  _numberOfCoins: 20
   _wanderRadius: 10
   _wanderTimer: 3
   _spellPrefab: {fileID: -434299369541247163, guid: de6143dee8cd2d44b86e6c61e8388bff, type: 3}

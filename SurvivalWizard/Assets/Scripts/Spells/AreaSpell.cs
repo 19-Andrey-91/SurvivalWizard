@@ -1,5 +1,5 @@
 ﻿
-using SurvivalWizard.Enemys;
+using SurvivalWizard.Enemies;
 using UnityEngine;
 
 namespace SurvivalWizard.Spells

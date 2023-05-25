@@ -1,9 +1,10 @@
-﻿using SurvivalWizard.EnemyState;
+﻿
+using SurvivalWizard.EnemyState;
 using UnityEngine;
 
-namespace SurvivalWizard.Enemys
+namespace SurvivalWizard.Enemies
 {
-    public class VikingSlime : Enemy
+    public class SimpleSlime : Enemy
     {
         private MovingToTargetEnemyState _movingTargetEnemyState;
         protected override void Start()

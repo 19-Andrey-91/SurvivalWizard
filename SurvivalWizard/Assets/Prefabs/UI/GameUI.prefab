@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 5248691074558222056}
   - component: {fileID: 5248691074558222057}
   m_Layer: 5
-  m_Name: KillsText
+  m_Name: CoinsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Kills: 0'
+  m_text: 'Coins : 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70334f3e8410dc4e97d567ec0b57138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countKillsText: {fileID: 5248691074558222057}
+  _countCoinsText: {fileID: 5248691074558222057}
   _countLevelText: {fileID: 736743221271837221}
   _pauseButton: {fileID: 3078174873291470717}
   _xpBarText: {fileID: 5645479898785243668}

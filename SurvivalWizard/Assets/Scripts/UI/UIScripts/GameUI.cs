@@ -7,7 +7,7 @@ namespace SurvivalWizard.UI.UIScripts
 {
     public class GameUI : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _countKillsText;
+        [SerializeField] private TextMeshProUGUI _countCoinsText;
         [SerializeField] private TextMeshProUGUI _countLevelText;
         [SerializeField] private Button _pauseButton;
         [Header("XpBar")]
@@ -20,7 +20,7 @@ namespace SurvivalWizard.UI.UIScripts
         public Button PauseButton { get => _pauseButton; }
         public TextMeshProUGUI HPBarText { get => _hpBarText; }
         public TextMeshProUGUI XPBarText { get => _xpBarText; }
-        public TextMeshProUGUI CountKillsText { get => _countKillsText; }
+        public TextMeshProUGUI CountCoinsText { get => _countCoinsText; }
         public TextMeshProUGUI CountLevelText { get => _countLevelText; }
         public Image HPBarImage { get => _hpBar; }
         public Image XPBarImage { get => _xpBar; }

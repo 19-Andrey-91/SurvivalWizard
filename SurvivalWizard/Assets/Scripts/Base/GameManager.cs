@@ -1,5 +1,6 @@
-using SurvivalWizard.Enemys;
+using SurvivalWizard.Enemies;
 using SurvivalWizard.PlayerScripts;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SurvivalWizard.Base
@@ -11,10 +12,15 @@ namespace SurvivalWizard.Base
         [SerializeField] private EnemySpawner _enemySpawner;
         [Header("Map")]
         [SerializeField] private GameObject _map;
+        [Space]
+        [SerializeField] private List<int> _weaponSelectionLevels;
 
+        private LvlUPManager _lvlUPManager;
         private Player _player;
         public Player Player { get => _player; }
         public EnemySpawner EnemySpawner { get => _enemySpawner; }
+
+        public LvlUPManager LvlUPManager { get => _lvlUPManager; }
 
         protected override void Awake()
         {
@@ -22,6 +28,13 @@ namespace SurvivalWizard.Base
             Instantiate(_map);
             _player = Instantiate(_prefabPlayer, _pointSpawnPlayer);
             _enemySpawner = Instantiate(_enemySpawner);
+            _lvlUPManager = new LvlUPManager(this, _weaponSelectionLevels);
+            _lvlUPManager.Subscribe();
+        }
+
+        private void OnDisable()
+        {
+            _lvlUPManager.Unsubscribe();
         }
     }
 }

@@ -3,10 +3,11 @@ using SurvivalWizard.EnemyState;
 using System;
 using UnityEngine;
 
-namespace SurvivalWizard.Enemys
+namespace SurvivalWizard.Enemies
 {
     public class ExplosionSlime : Enemy
     {
+        [Space]
         [SerializeField] private float _explosionRadius;
         [SerializeField] private float _explosionDamage;
 

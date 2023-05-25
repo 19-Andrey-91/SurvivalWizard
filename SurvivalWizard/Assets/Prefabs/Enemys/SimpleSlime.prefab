@@ -313,6 +313,8 @@ MonoBehaviour:
   _damage: 10
   _speed: 3
   _delayBetweenAttack: 0
+  _numberOfExperience: 50
+  _numberOfCoins: 10
 --- !u!95 &6168731499156566161
 Animator:
   serializedVersion: 5

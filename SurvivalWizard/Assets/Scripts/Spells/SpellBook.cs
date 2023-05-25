@@ -13,12 +13,12 @@ namespace SurvivalWizard.Spells
     {
         [SerializeField] private List<Spell> _spells;
 
-        private List<Spell> _currentSpell = new();
+        private List<Spell> _currentSpells = new();
         private SpellUpgradeData _upgradeData;
 
         public IEnumerable<Spell> Spells { get => _spells; }
-        public IEnumerable<Spell> CurrentSpells { get => _currentSpell; }
-        public bool AllSpellsLearned { get => _currentSpell.Count >= _spells.Count; }
+        public IEnumerable<Spell> CurrentSpells { get => _currentSpells; }
+        public bool AllSpellsLearned { get => _currentSpells.Count >= _spells.Count; }
 
         CancellationTokenSource _cancellationTokenSource;
 
@@ -31,11 +31,11 @@ namespace SurvivalWizard.Spells
         {
             _cancellationTokenSource = new CancellationTokenSource();
 
-            for (int i = 0; i < _currentSpell.Count; i++)
+            for (int i = 0; i < _currentSpells.Count; i++)
             {
-                if (_currentSpell[i] != null)
+                if (_currentSpells[i] != null)
                 {
-                    _ = InstantiateSpellAsync(_currentSpell[i], pointSpawnSpell, _cancellationTokenSource.Token);
+                    _ = InstantiateSpellAsync(_currentSpells[i], pointSpawnSpell, _cancellationTokenSource.Token);
                 }
             }
         }
@@ -57,9 +57,9 @@ namespace SurvivalWizard.Spells
 
         public void LearnSpell(Spell spell)
         {
-            if (spell != null && !_currentSpell.Contains(spell))
+            if (spell != null && !_currentSpells.Contains(spell))
             {
-                _currentSpell.Add(spell);
+                _currentSpells.Add(spell);
             }
         }
 

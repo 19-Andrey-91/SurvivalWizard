@@ -1,19 +1,16 @@
 ﻿
 using SurvivalWizard.Base;
+using SurvivalWizard.PlayerScripts;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
 
-namespace SurvivalWizard.Enemys
+namespace SurvivalWizard.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
-        public event Action<int> OnUpdatedCountKillsEvent;
-        public event Action OnAdditionWeaponEvent;
-        public event Action OnUpgradeSkillEvent;
-
         [Header("Enemy Prefabs")]
         [SerializeField] private List<PoolData<Enemy>> _enemyPoolData;
         [Header("Spawn options")]
@@ -27,17 +24,16 @@ namespace SurvivalWizard.Enemys
 
         private List<ObjectPool<Enemy>> _enemyPools;
 
-        private Transform _player;
+        private Player _player;
         private float _spawnTimer;
         private float _waveTimer;
         private int _indexPool = 0;
-        private int _countKills = 0;
 
         private void Start()
         {
             _enemyPools = new List<ObjectPool<Enemy>>();
             CreatePools();
-            _player = GameManager.Instance.Player.transform;
+            _player = GameManager.Instance.Player;
 
         }
 
@@ -54,7 +50,7 @@ namespace SurvivalWizard.Enemys
                         Enemy enemy = Instantiate(data.Prefab, data.Container);
                         enemy.NumberPool = numberPool;
                         enemy.OnDiedEvent += ReleaseEnemyAfterDeath;
-                        enemy.OnDiedEvent += IncrementCountKills;
+                        enemy.OnDiedEvent += EntityDeath;
                         return enemy;
                     },
                     enemyGet =>
@@ -68,29 +64,23 @@ namespace SurvivalWizard.Enemys
                     },
                     enemyDestroy =>
                     {
-                        enemyDestroy.OnDiedEvent -= IncrementCountKills;
+                        enemyDestroy.OnDiedEvent -= EntityDeath;
                         enemyDestroy.OnDiedEvent -= ReleaseEnemyAfterDeath;
                         Destroy(enemyDestroy.gameObject);
                     },
-                    true, 
-                    data.PoolCount, 
+                    true,
+                    data.PoolCount,
                     data.PoolMaxCount
                 ));
             }
         }
 
-        private void IncrementCountKills(Entity obj)
+        private void EntityDeath(Entity obj)
         {
-            _countKills++;
-            OnUpdatedCountKillsEvent?.Invoke(_countKills);
-
-            if(_countKills % _killToAddingWeapon == 0)
+            if (obj is Enemy enemy)
             {
-                OnAdditionWeaponEvent?.Invoke();
-            }
-            else if(_countKills % _killToUpgrade == 0)
-            {
-                OnUpgradeSkillEvent?.Invoke();
+                _player.Wallet.AddCoins(enemy.NumberOfCoins);
+                _player.PlayerLevel.AddExperience(enemy.NumberOfExperience);
             }
         }
 
@@ -133,7 +123,7 @@ namespace SurvivalWizard.Enemys
         {
             Vector3 randomPoint = GetRandomPointOnNavMesh();
 
-            if (Vector3.Distance(randomPoint, _player.position) > _minDistanceToPlayer)
+            if (Vector3.Distance(randomPoint, _player.transform.position) > _minDistanceToPlayer)
             {
                 if (randomPoint != Vector3.zero)
                 {
@@ -145,7 +135,7 @@ namespace SurvivalWizard.Enemys
         private Vector3 GetRandomPointOnNavMesh()
         {
             Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * _spawnRadius;
-            randomDirection += _player.position;
+            randomDirection += _player.transform.position;
 
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomDirection, out hit, _spawnRadius, NavMesh.AllAreas))

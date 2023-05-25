@@ -1,8 +1,7 @@
 ﻿using SurvivalWizard.Base;
-using SurvivalWizard.Enemys;
+using SurvivalWizard.Enemies;
 using SurvivalWizard.PlayerScripts;
 using SurvivalWizard.UI.UIScripts;
-using System;
 using UnityEngine;
 
 namespace SurvivalWizard.UI.StateUI
@@ -12,7 +11,7 @@ namespace SurvivalWizard.UI.StateUI
         private LoaderUI _loaderUI;
         private GameUI _gameUI;
         private Player _player;
-        private EnemySpawner _enemySpawner;
+        private LvlUPManager _lvlUpManager;
         public GameUIState(LoaderUI loaderUI, GameUI gameUI)
         {
             _loaderUI = loaderUI;
@@ -23,7 +22,7 @@ namespace SurvivalWizard.UI.StateUI
             Time.timeScale = 1f;
 
             _player = GameManager.Instance.Player;
-            _enemySpawner = GameManager.Instance.EnemySpawner;
+            _lvlUpManager = GameManager.Instance.LvlUPManager;
 
             _gameUI.gameObject.SetActive(true);
 
@@ -31,12 +30,12 @@ namespace SurvivalWizard.UI.StateUI
 
             _player.OnDiedEvent += ChangeUIStateToGameOver;
             _player.OnTakeDamageEvent += UpdateHPBar;
-            _enemySpawner.OnUpdatedCountKillsEvent += UpdateCountKills;
-            _enemySpawner.OnUpgradeSkillEvent += ChangeUIStateToUpgrade;
-            _enemySpawner.OnAdditionWeaponEvent += ChangeUIStateToAddingWeapon;
+            _lvlUpManager.OnUpgradeSkillEvent += ChangeUIStateToUpgrade;
+            _lvlUpManager.OnAdditionWeaponEvent += ChangeUIStateToAddingWeapon;
             _gameUI.PauseButton.onClick.AddListener(ChangeUIStateToPause);
             _player.PlayerLevel.OnIncreasedLevelEvent += UpdateCountLevel;
             _player.PlayerLevel.OnExperienceAddedEvent += UpdateCountExperience;
+            _player.Wallet.OnChangeCoinsEvent += UpdateCountCoins;
 
             UpdateHPBar(_player);
             UpdateCountExperience(0);
@@ -59,21 +58,21 @@ namespace SurvivalWizard.UI.StateUI
             _gameUI.HPBarImage.fillAmount = player.Hp / player.MaxHp;
         }
 
-        private void UpdateCountKills(int countKills)
+        private void UpdateCountCoins(int countCoins)
         {
-            _gameUI.CountKillsText.text = $"Kills: {countKills}";
+            _gameUI.CountCoinsText.text = $"Coins: {countCoins}";
         }
 
         public void Exit()
         {
-            _enemySpawner.OnUpgradeSkillEvent -= ChangeUIStateToUpgrade;
-            _enemySpawner.OnUpdatedCountKillsEvent -= UpdateCountKills;
-            _enemySpawner.OnAdditionWeaponEvent -= ChangeUIStateToAddingWeapon;
+            _lvlUpManager.OnUpgradeSkillEvent -= ChangeUIStateToUpgrade;
+            _lvlUpManager.OnAdditionWeaponEvent -= ChangeUIStateToAddingWeapon;
             _player.OnTakeDamageEvent -= UpdateHPBar;
             _player.OnDiedEvent -= ChangeUIStateToGameOver;
             _gameUI.PauseButton.onClick.RemoveListener(ChangeUIStateToPause);
             _player.PlayerLevel.OnIncreasedLevelEvent -= UpdateCountLevel;
             _player.PlayerLevel.OnExperienceAddedEvent -= UpdateCountExperience;
+            _player.Wallet.OnChangeCoinsEvent -= UpdateCountCoins;
 
             AudioListener.pause = true;
 

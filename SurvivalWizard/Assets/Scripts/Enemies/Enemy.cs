@@ -5,12 +5,15 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace SurvivalWizard.Enemys
+namespace SurvivalWizard.Enemies
 {
     [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
     public class Enemy : Entity
     {
         public event Action OnCausedDamage;
+        [Header("Resources")]
+        [SerializeField] private int _numberOfExperience;
+        [SerializeField] private int _numberOfCoins;
 
         protected StateMachineEnemy _stateMachine;
         protected NavMeshAgent _agent;
@@ -19,6 +22,8 @@ namespace SurvivalWizard.Enemys
         private Animator _animator;
         private int _numberPool = -1;
 
+        public int NumberOfCoins { get => _numberOfCoins; }
+        public int NumberOfExperience { get => _numberOfExperience; }
         public NavMeshAgent NavMeshAgent { get => _agent; }
         public Animator Animator { get => _animator; }
 

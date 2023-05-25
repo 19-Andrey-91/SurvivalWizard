@@ -3,7 +3,7 @@ using SurvivalWizard.EnemyState;
 using SurvivalWizard.Spells;
 using UnityEngine;
 
-namespace SurvivalWizard.Enemys
+namespace SurvivalWizard.Enemies
 {
     public class LeafSlime : Enemy
     {
@@ -21,7 +21,7 @@ namespace SurvivalWizard.Enemys
         {
             base.Start();
             _randomMovingEnemyState = new RandomMovingEnemyState(this, _wanderRadius, _wanderTimer);
-            _rangedAttackEnemyState = new RangedAttackEnemyState(this, _spellPrefab, _delayBetweenAttack, _numberAttack);
+            _rangedAttackEnemyState = new RangedAttackEnemyState(this, _spellPrefab, _spellPrefab.DelayBetweenCast, _numberAttack);
             _stateMachine.Initialize(_randomMovingEnemyState);
             Subscribe();
         }
