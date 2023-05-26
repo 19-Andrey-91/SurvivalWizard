@@ -48,4 +48,4 @@ MonoBehaviour:
   _prefabPlayer: {fileID: 5407778450110943450, guid: cecd64082c1bca14186c9c9b4044ceff, type: 3}
   _enemySpawner: {fileID: 3193457031294576214, guid: 37a31bab3d1928042be921eb52149438, type: 3}
   _map: {fileID: 4166851675436163460, guid: 468766b9096a72243845b28b65363588, type: 3}
-  _weaponSelectionLevels: 02000000030000000400000005000000
+  _weaponSelectionLevels: 030000000a000000

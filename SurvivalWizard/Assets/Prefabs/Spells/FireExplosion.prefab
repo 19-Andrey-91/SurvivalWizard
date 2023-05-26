@@ -19707,7 +19707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameSpell: Fire explosion
   _sprite: {fileID: 21300000, guid: f94e833302efbe3419ce711d3ddf7293, type: 3}
-  _damage: 100
+  _damage: 70
   _delayBetweenCast: 2
   _searchAreaTarget: 10
   _targetLayer:
