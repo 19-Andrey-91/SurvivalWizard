@@ -4,6 +4,8 @@ using Cinemachine;
 using SurvivalWizard.Base;
 using SurvivalWizard.Enemies;
 using SurvivalWizard.Spells;
+using Zenject;
+using SurvivalWizard.Sounds;
 
 namespace SurvivalWizard.PlayerScripts
 {
@@ -18,21 +20,23 @@ namespace SurvivalWizard.PlayerScripts
         private PlayerMovement _playerMovement;
         private Animator _animator;
         private PlayerAnimationController _playerAnimationController;
-        private Wallet _wallet;
+        private SoundManager _soundManager;
 
         public Transform PointSpawnSpell { get => _pointSpawnSpell; }
         public Animator PlayerAnimator { get => _animator ??= GetComponent<Animator>(); }
         public PlayerMovement PlayerMovement { get => _playerMovement ??= GetComponent<PlayerMovement>(); }
         public SpellBook SpellBook { get => _spellBook; }
-        public PlayerLevel PlayerLevel { get => _playerLevel; }
-        public Wallet Wallet { get => _wallet; }
+        public PlayerLevel PlayerLevel { get => _playerLevel ??= new PlayerLevel(_levelBoostFactor); }
+
+        [Inject]
+        private void Construct(SoundManager soundManager)
+        {
+            _soundManager = soundManager;
+        }
 
         private void Awake()
         {
-            _playerLevel = new PlayerLevel(_levelBoostFactor);
-            _wallet = new Wallet(0);
             _playerAnimationController = new PlayerAnimationController(this, PlayerAnimator);
-            SpellBook.Initialize();
         }
 
         private void Start()
@@ -43,6 +47,7 @@ namespace SurvivalWizard.PlayerScripts
             }
             else throw new UnityException("CinemachineVirtualCamera is not found");
 
+            SpellBook.Initialize(_soundManager);
             _playerMovement.ChangeSpeed(Speed);
         }
 

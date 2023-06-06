@@ -13,10 +13,10 @@ namespace SurvivalWizard.PlayerScripts
         private List<int> _weaponSelectionLevel;
         private Player _player;
 
-        public LvlUPManager(GameManager gameManager, List<int> weaponSelectionLevel) 
+        public LvlUPManager(Player player, List<int> weaponSelectionLevel) 
         {
             _weaponSelectionLevel = weaponSelectionLevel;
-            _player = gameManager.Player;
+            _player = player;
         }
 
         public void Subscribe()
@@ -26,7 +26,7 @@ namespace SurvivalWizard.PlayerScripts
 
         public void Unsubscribe()
         {
-            _player.PlayerLevel.OnIncreasedLevelEvent += ChooseUpgrade;
+            _player.PlayerLevel.OnIncreasedLevelEvent -= ChooseUpgrade;
         }
 
         private void ChooseUpgrade(int lvl)

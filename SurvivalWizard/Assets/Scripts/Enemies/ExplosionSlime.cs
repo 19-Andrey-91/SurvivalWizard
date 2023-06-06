@@ -14,9 +14,8 @@ namespace SurvivalWizard.Enemies
         private MovingToTargetEnemyState _movingTargetEnemyState;
         private ExplosionEnemyState _explosionEnemyState;
 
-        protected override void Start()
+        protected  void Start()
         {
-            base.Start();
             _movingTargetEnemyState = new MovingToTargetEnemyState(this, _target.transform);
             _explosionEnemyState = new ExplosionEnemyState(this, _target, _explosionDamage, _explosionRadius);
 

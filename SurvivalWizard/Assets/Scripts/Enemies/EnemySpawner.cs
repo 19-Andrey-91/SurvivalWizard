@@ -1,11 +1,13 @@
 ﻿
 using SurvivalWizard.Base;
 using SurvivalWizard.PlayerScripts;
+using SurvivalWizard.Sounds;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
+using Zenject;
 
 namespace SurvivalWizard.Enemies
 {
@@ -29,12 +31,16 @@ namespace SurvivalWizard.Enemies
         private float _waveTimer;
         private int _indexPool = 0;
 
+        [Inject]
+        private void Construct(Player player)
+        {
+            _player = player;
+        }
+
         private void Start()
         {
             _enemyPools = new List<ObjectPool<Enemy>>();
             CreatePools();
-            _player = GameManager.Instance.Player;
-
         }
 
         private void CreatePools()
@@ -48,6 +54,7 @@ namespace SurvivalWizard.Enemies
                     () =>
                     {
                         Enemy enemy = Instantiate(data.Prefab, data.Container);
+                        enemy.Initialize(_player);
                         enemy.NumberPool = numberPool;
                         enemy.OnDiedEvent += ReleaseEnemyAfterDeath;
                         enemy.OnDiedEvent += EntityDeath;
@@ -79,7 +86,7 @@ namespace SurvivalWizard.Enemies
         {
             if (obj is Enemy enemy)
             {
-                _player.Wallet.AddCoins(enemy.NumberOfCoins);
+                Bank.Instance.AddCoins(enemy.NumberOfCoins);
                 _player.PlayerLevel.AddExperience(enemy.NumberOfExperience);
             }
         }

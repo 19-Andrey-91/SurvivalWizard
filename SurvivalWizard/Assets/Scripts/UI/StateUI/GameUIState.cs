@@ -1,7 +1,7 @@
 ﻿using SurvivalWizard.Base;
-using SurvivalWizard.Enemies;
 using SurvivalWizard.PlayerScripts;
 using SurvivalWizard.UI.UIScripts;
+using System;
 using UnityEngine;
 
 namespace SurvivalWizard.UI.StateUI
@@ -12,17 +12,20 @@ namespace SurvivalWizard.UI.StateUI
         private GameUI _gameUI;
         private Player _player;
         private LvlUPManager _lvlUpManager;
-        public GameUIState(LoaderUI loaderUI, GameUI gameUI)
+        private GameManager _gameManager;
+        public GameUIState(LoaderUI loaderUI, GameUI gameUI, GameManager gameManager, Player player)
         {
             _loaderUI = loaderUI;
             _gameUI = gameUI;
+            _player = player;
+            _lvlUpManager = gameManager.LvlUPManager;
+            _gameManager = gameManager;
         }
         public void Enter()
         {
-            Time.timeScale = 1f;
+            _gameManager.Pause(false);
 
-            _player = GameManager.Instance.Player;
-            _lvlUpManager = GameManager.Instance.LvlUPManager;
+            UpdateCountCoins(Bank.Instance.CurrentCoins);
 
             _gameUI.gameObject.SetActive(true);
 
@@ -35,7 +38,7 @@ namespace SurvivalWizard.UI.StateUI
             _gameUI.PauseButton.onClick.AddListener(ChangeUIStateToPause);
             _player.PlayerLevel.OnIncreasedLevelEvent += UpdateCountLevel;
             _player.PlayerLevel.OnExperienceAddedEvent += UpdateCountExperience;
-            _player.Wallet.OnChangeCoinsEvent += UpdateCountCoins;
+            Bank.Instance.OnChangeCoinsEvent += UpdateCountCoins;
 
             UpdateHPBar(_player);
             UpdateCountExperience(0);
@@ -72,9 +75,10 @@ namespace SurvivalWizard.UI.StateUI
             _gameUI.PauseButton.onClick.RemoveListener(ChangeUIStateToPause);
             _player.PlayerLevel.OnIncreasedLevelEvent -= UpdateCountLevel;
             _player.PlayerLevel.OnExperienceAddedEvent -= UpdateCountExperience;
-            _player.Wallet.OnChangeCoinsEvent -= UpdateCountCoins;
+            Bank.Instance.OnChangeCoinsEvent -= UpdateCountCoins;
 
             AudioListener.pause = true;
+            _gameManager.Pause(true);
 
             _gameUI.gameObject.SetActive(false);
         }

@@ -4,6 +4,7 @@ using SurvivalWizard.Sounds;
 using System;
 using System.Threading;
 using UnityEngine;
+using Zenject;
 
 namespace SurvivalWizard.Spells
 {
@@ -13,7 +14,7 @@ namespace SurvivalWizard.Spells
         [SerializeField] private float _timeTakeDamaging;
         [Header("Sound")]
         [SerializeField] private string _nameSoundExplosion;
-        
+
         private CancellationTokenSource _cancellationTokenSource;
 
         private void OnEnable()
@@ -48,7 +49,7 @@ namespace SurvivalWizard.Spells
             if (!isCancelled)
             {
                 Explosion();
-                SoundManager.Instance.PlaySound(_nameSoundExplosion, transform.position);
+                SoundManager.PlaySound(_nameSoundExplosion, transform.position);
             }
         }
     }

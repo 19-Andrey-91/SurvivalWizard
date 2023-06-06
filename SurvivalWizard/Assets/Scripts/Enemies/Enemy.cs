@@ -27,6 +27,8 @@ namespace SurvivalWizard.Enemies
         public NavMeshAgent NavMeshAgent { get => _agent; }
         public Animator Animator { get => _animator; }
 
+        public Player Target { get => _target; }
+
         public int NumberPool
         {
             get => _numberPool;
@@ -47,6 +49,11 @@ namespace SurvivalWizard.Enemies
 
         public Transform EnemyTransform { get => _enemyTransform; }
 
+        public void Initialize(Player player)
+        {
+            _target = player;
+        }
+
         private void Awake()
         {
             _enemyTransform = transform;
@@ -63,11 +70,6 @@ namespace SurvivalWizard.Enemies
             {
                 _stateMachine.ChangeState(_stateMachine.CurrentState);
             }
-        }
-
-        protected virtual void Start()
-        {
-            _target = GameManager.Instance.Player;
         }
 
         private void OnTriggerEnter(Collider other)

@@ -13,16 +13,14 @@ namespace SurvivalWizard.UI.StateUI
         private bool _isCreated;
         private Player _player;
 
-        public AddingSpellUIState(LoaderUI loaderUI, AddingSpellUI addingSpellUI)
+        public AddingSpellUIState(LoaderUI loaderUI, AddingSpellUI addingSpellUI, Player player)
         {
             _loaderUI = loaderUI;
             _addingSpellUI = addingSpellUI;
+            _player = player;
         }
         public void Enter()
         {
-            _player = GameManager.Instance.Player;
-
-            Time.timeScale = 0f;
             _addingSpellUI.gameObject.SetActive(true);
             CreateSpellButton();
         }

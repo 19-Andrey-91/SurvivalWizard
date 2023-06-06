@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SurvivalWizard.Sounds;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace SurvivalWizard.Spells
         [SerializeField] protected float _searchAreaTarget;
         [SerializeField] protected LayerMask _targetLayer;
         protected Collider[] _targetColliders;
+        public SoundManager SoundManager { get; set; }
 
         private ISpellDamaging _currentSpellDamage;
 
@@ -34,11 +36,6 @@ namespace SurvivalWizard.Spells
             {
                 _targetColliders = _targetColliders.Except(exceptTargets).ToArray();
             }
-        }
-
-        public override int GetHashCode()
-        {
-            return CurrentSpellDamage.GetHashCode();
         }
     }
 }

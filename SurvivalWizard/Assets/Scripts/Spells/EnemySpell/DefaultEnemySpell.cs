@@ -1,15 +1,20 @@
-﻿
-using SurvivalWizard.Base;
-using SurvivalWizard.PlayerScripts;
+﻿using SurvivalWizard.PlayerScripts;
 using UnityEngine;
 
 namespace SurvivalWizard.Spells.EnemySpell
 {
     public class DefaultEnemySpell : FlyingSpell
     {
+        private Player _target;
+
+        public void Initialize(Player target)
+        {
+            _target = target;
+        }
+
         private void Start()
         {
-            SetRotation(GameManager.Instance.Player.PlayerMovement.CharacterController);
+            SetRotation(_target.PlayerMovement.CharacterController);
         }
         private void OnTriggerEnter(Collider other)
         {

@@ -1,5 +1,6 @@
 ﻿
 using Cysharp.Threading.Tasks;
+using SurvivalWizard.Sounds;
 using SurvivalWizard.Spells.Upgrade;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace SurvivalWizard.Spells
 
         private List<Spell> _currentSpells = new();
         private SpellUpgradeData _upgradeData;
+        private SoundManager _soundManager;
 
         public IEnumerable<Spell> Spells { get => _spells; }
         public IEnumerable<Spell> CurrentSpells { get => _currentSpells; }
@@ -22,9 +24,10 @@ namespace SurvivalWizard.Spells
 
         CancellationTokenSource _cancellationTokenSource;
 
-        public void Initialize()
+        public void Initialize(SoundManager soundManager)
         {
             _upgradeData = new SpellUpgradeData(_spells);
+            _soundManager = soundManager;
         }
 
         public void Fire(Transform pointSpawnSpell)
@@ -44,7 +47,8 @@ namespace SurvivalWizard.Spells
         {
             while (!token.IsCancellationRequested)
             {
-                Spell newSpell = GameObject.Instantiate(spell, pointSpawnSpell.position, pointSpawnSpell.rotation);
+                Spell newSpell = GameObject.Instantiate(spell, pointSpawnSpell.position, pointSpawnSpell.rotation, null);
+                newSpell.SoundManager = _soundManager;
                 newSpell.CurrentSpellDamage = _upgradeData.GetSpellDamage(newSpell.NameSpell);
                 await UniTask.Delay(TimeSpan.FromSeconds(spell.DelayBetweenCast), cancellationToken: token).SuppressCancellationThrow();
             }

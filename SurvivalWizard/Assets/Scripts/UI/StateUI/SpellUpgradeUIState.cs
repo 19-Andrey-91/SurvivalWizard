@@ -1,5 +1,5 @@
 ﻿
-using SurvivalWizard.Base;
+using SurvivalWizard.PlayerScripts;
 using SurvivalWizard.Spells;
 using SurvivalWizard.UI.UIScripts;
 using System.Collections.Generic;
@@ -18,20 +18,18 @@ namespace SurvivalWizard.UI.StateUI
 
         private Dictionary<string, SpellButtonUI> _buttonsChooseSpells;
 
-        public SpellUpgradeUIState(LoaderUI loaderUI, SpellUpgradeUI spellUpgradeUI)
+        public SpellUpgradeUIState(LoaderUI loaderUI, SpellUpgradeUI spellUpgradeUI, Player player)
         {
             _loaderUI = loaderUI;
             _spellUpgradeUI = spellUpgradeUI;
             _buttonsChooseSpells = new();
             _chooseSpellUI = spellUpgradeUI.ChooseSpellUI;
             _chooseSpellUpgradeUI = spellUpgradeUI.ChooseSpellUgradeUI;
+            _spellBook = player.SpellBook;
         }
 
         public void Enter()
         {
-            _spellBook = GameManager.Instance.Player.SpellBook;
-
-            Time.timeScale = 0f;
             _chooseSpellUpgradeUI.AddDamage.onClick.AddListener(AddInstantDamage);
             _chooseSpellUpgradeUI.AddDurationDamage.onClick.AddListener(AddDurationDamage);
             _spellUpgradeUI.gameObject.SetActive(true);
@@ -44,7 +42,6 @@ namespace SurvivalWizard.UI.StateUI
             _chooseSpellUpgradeUI.AddDamage.onClick.RemoveListener(AddInstantDamage);
             _chooseSpellUpgradeUI.AddDurationDamage.onClick.RemoveListener(AddDurationDamage);
             _spellUpgradeUI.gameObject.SetActive(false);
-            Time.timeScale = 1f;
         }
 
         public void UpdateSpell()

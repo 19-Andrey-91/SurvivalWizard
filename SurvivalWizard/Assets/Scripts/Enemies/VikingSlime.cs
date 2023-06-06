@@ -6,9 +6,8 @@ namespace SurvivalWizard.Enemies
     public class VikingSlime : Enemy
     {
         private MovingToTargetEnemyState _movingTargetEnemyState;
-        protected override void Start()
+        protected void Start()
         {
-            base.Start();
             _movingTargetEnemyState = new MovingToTargetEnemyState(this, _target.transform);
             _stateMachine.Initialize(_movingTargetEnemyState);
         }

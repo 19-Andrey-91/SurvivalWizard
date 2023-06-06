@@ -29,7 +29,7 @@ namespace SurvivalWizard
                 var json = fileStream.ReadToEnd();
                 var data = JsonConvert.DeserializeObject<T>(json);
 
-                callback?.Invoke(data);
+                callback.Invoke(data);
             }
         }
 

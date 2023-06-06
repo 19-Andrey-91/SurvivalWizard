@@ -9,11 +9,12 @@ namespace SurvivalWizard.Spells
     {
         [Header("Sound")]
         [SerializeField] private string _nameFireballSound;
+
         private void Start()
         {
             SearchTargets();
             FindNearestColliderAndSetRotation();
-            SoundManager.Instance.PlaySound(_nameFireballSound, transform.position);
+            SoundManager.PlaySound(_nameFireballSound, transform.position);
         }
 
         private void OnTriggerEnter(Collider other)

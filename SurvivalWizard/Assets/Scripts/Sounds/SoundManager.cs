@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 
 namespace SurvivalWizard.Sounds
 {
-    public class SoundManager : Singleton<SoundManager>
+    public class SoundManager : MonoBehaviour
     {
         [SerializeField] private AudioMixer _audioMixer;
         [SerializeField] private Transform _soundContainer;
@@ -19,7 +19,6 @@ namespace SurvivalWizard.Sounds
 
         private void Start()
         {
-            DontDestroyOnLoad(gameObject);
             PlaySound("StartMusic", true);
             SetVolumeMusic(MusicVolume);
             SetVolumeEffects(EffectsVolume);

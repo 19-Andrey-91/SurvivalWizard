@@ -17,9 +17,8 @@ namespace SurvivalWizard.Enemies
         private RandomMovingEnemyState _randomMovingEnemyState;
         private RangedAttackEnemyState _rangedAttackEnemyState;
 
-        protected override void Start()
+        protected  void Start()
         {
-            base.Start();
             _randomMovingEnemyState = new RandomMovingEnemyState(this, _wanderRadius, _wanderTimer);
             _rangedAttackEnemyState = new RangedAttackEnemyState(this, _spellPrefab, _spellPrefab.DelayBetweenCast, _numberAttack);
             _stateMachine.Initialize(_randomMovingEnemyState);

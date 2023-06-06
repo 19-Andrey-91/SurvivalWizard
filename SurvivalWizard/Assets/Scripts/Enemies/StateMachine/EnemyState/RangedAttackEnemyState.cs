@@ -1,6 +1,7 @@
 ﻿
 using SurvivalWizard.Enemies;
 using SurvivalWizard.Spells;
+using SurvivalWizard.Spells.EnemySpell;
 using System;
 using UnityEngine;
 
@@ -46,7 +47,11 @@ namespace SurvivalWizard.EnemyState
             if (_timer > _delayBetweenAttack)
             {
                 _animator.SetTrigger("Attack");
-                GameObject.Instantiate(_spellPrefab, _transform.position, Quaternion.identity);
+                Spell spell = GameObject.Instantiate(_spellPrefab, _transform.position, Quaternion.identity);
+                if(spell is DefaultEnemySpell defaultSpell)
+                {
+                    defaultSpell.Initialize(_enemy.Target);
+                }
                 _timer -= _delayBetweenAttack;
                 _countAttack--;
                 if (_countAttack <= 0)
