@@ -15,6 +15,7 @@ namespace SurvivalWizard
                 .Bind<GameManager>()
                 .FromComponentInNewPrefab(_gameManagerPrefab)
                 .AsSingle();
+
         }
     }
 }

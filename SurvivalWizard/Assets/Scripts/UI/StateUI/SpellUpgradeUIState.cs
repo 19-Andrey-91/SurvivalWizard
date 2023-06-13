@@ -1,5 +1,5 @@
 ﻿
-using SurvivalWizard.PlayerScripts;
+using SurvivalWizard.Base;
 using SurvivalWizard.Spells;
 using SurvivalWizard.UI.UIScripts;
 using System.Collections.Generic;
@@ -9,27 +9,30 @@ namespace SurvivalWizard.UI.StateUI
 {
     public class SpellUpgradeUIState : IStateUI
     {
-        private LoaderUI _loaderUI;
-        private SpellUpgradeUI _spellUpgradeUI;
-        private ChooseSpellUI _chooseSpellUI;
-        private ChooseSpellUpgradeUI _chooseSpellUpgradeUI;
+        private readonly LoaderUI _loaderUI;
+        private readonly GameManager _gameManager;
+        private readonly SpellUpgradeUI _spellUpgradeUI;
+        private readonly ChooseSpellUI _chooseSpellUI;
+        private readonly ChooseSpellUpgradeUI _chooseSpellUpgradeUI;
+        private readonly SpellBook _spellBook;
         private Spell _currentSpell;
-        private SpellBook _spellBook;
 
         private Dictionary<string, SpellButtonUI> _buttonsChooseSpells;
 
-        public SpellUpgradeUIState(LoaderUI loaderUI, SpellUpgradeUI spellUpgradeUI, Player player)
+        public SpellUpgradeUIState(LoaderUI loaderUI, SpellUpgradeUI spellUpgradeUI, GameManager gameManager)
         {
             _loaderUI = loaderUI;
+            _gameManager = gameManager;
             _spellUpgradeUI = spellUpgradeUI;
             _buttonsChooseSpells = new();
             _chooseSpellUI = spellUpgradeUI.ChooseSpellUI;
             _chooseSpellUpgradeUI = spellUpgradeUI.ChooseSpellUgradeUI;
-            _spellBook = player.SpellBook;
+            _spellBook = gameManager.Player.SpellBook;
         }
 
         public void Enter()
         {
+            _gameManager.Pause(true);
             _chooseSpellUpgradeUI.AddDamage.onClick.AddListener(AddInstantDamage);
             _chooseSpellUpgradeUI.AddDurationDamage.onClick.AddListener(AddDurationDamage);
             _spellUpgradeUI.gameObject.SetActive(true);

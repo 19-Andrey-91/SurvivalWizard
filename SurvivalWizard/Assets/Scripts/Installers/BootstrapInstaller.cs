@@ -1,3 +1,4 @@
+using SurvivalWizard.Base;
 using SurvivalWizard.Sounds;
 using UnityEngine;
 using Zenject;
@@ -13,6 +14,10 @@ namespace SurvivalWizard
             Container
                 .Bind<SoundManager>()
                 .FromComponentInNewPrefab(_soundManagerPrefab)
+                .AsSingle();
+
+            Container
+                .Bind<Bank>()
                 .AsSingle();
         }
     }

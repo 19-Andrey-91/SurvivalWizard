@@ -1,6 +1,5 @@
 using SurvivalWizard.Enemies;
 using SurvivalWizard.PlayerScripts;
-using SurvivalWizard.Sounds;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -18,27 +17,22 @@ namespace SurvivalWizard.Base
         [SerializeField] private List<int> _weaponSelectionLevels;
 
         private LvlUPManager _lvlUPManager;
-        private SoundManager _soundManager;
         private DiContainer _diContainer;
-        private Player _player;
 
         public EnemySpawner EnemySpawner { get => _enemySpawner; }
-
-        public LvlUPManager LvlUPManager { get => _lvlUPManager ??= new LvlUPManager(_player, _weaponSelectionLevels); }
-
-        public Player Player { get => _player; }
+        public LvlUPManager LvlUPManager { get => _lvlUPManager ??= new LvlUPManager(Player, _weaponSelectionLevels); }
+        public Player Player { get; private set; }
+        public bool IsPause { get => Time.timeScale == 0; }
 
         [Inject]
-        private void Construct(SoundManager soundManager, DiContainer diContainer)
+        private void Construct(DiContainer diContainer)
         {
-            _soundManager = soundManager;
             _diContainer = diContainer;
         }
 
         protected void Awake()
         {
-            _player = _diContainer.InstantiatePrefabForComponent<Player>(_prefabPlayer, _pointSpawnPlayer);
-            _diContainer.Bind<Player>().FromInstance(_player).AsSingle();
+            Player = _diContainer.InstantiatePrefabForComponent<Player>(_prefabPlayer, _pointSpawnPlayer);
             Instantiate(_map);
             _enemySpawner = _diContainer.InstantiatePrefabForComponent<EnemySpawner>(_enemySpawner);
             LvlUPManager.Subscribe();

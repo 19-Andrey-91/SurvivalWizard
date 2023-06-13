@@ -14,6 +14,12 @@ namespace SurvivalWizard.Spells
 
         private List<Collider> _enemiesHitByProjectile = new List<Collider>();
 
+        private void Start()
+        {
+            SearchTargets();
+            FindNearestColliderAndSetRotation();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Enemy enemy))

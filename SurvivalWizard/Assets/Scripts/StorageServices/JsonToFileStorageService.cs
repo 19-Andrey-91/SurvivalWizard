@@ -1,6 +1,6 @@
-using Newtonsoft.Json;
 using System;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace SurvivalWizard
@@ -23,13 +23,19 @@ namespace SurvivalWizard
         public void Load<T>(string key, Action<T> callback)
         {
             string path = BuildPath(key);
-
-            using (var fileStream = new StreamReader(path))
+            if (File.Exists(path))
             {
-                var json = fileStream.ReadToEnd();
-                var data = JsonConvert.DeserializeObject<T>(json);
+                using (var fileStream = new StreamReader(path))
+                {
+                    var json = fileStream.ReadToEnd();
+                    var data = JsonConvert.DeserializeObject<T>(json);
 
-                callback.Invoke(data);
+                    callback.Invoke(data);
+                }
+            }
+            else
+            {
+                callback.Invoke(default);
             }
         }
 

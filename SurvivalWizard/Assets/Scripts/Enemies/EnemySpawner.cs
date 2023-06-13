@@ -1,7 +1,6 @@
 ﻿
 using SurvivalWizard.Base;
 using SurvivalWizard.PlayerScripts;
-using SurvivalWizard.Sounds;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,14 +26,16 @@ namespace SurvivalWizard.Enemies
         private List<ObjectPool<Enemy>> _enemyPools;
 
         private Player _player;
+        private Bank _bank;
         private float _spawnTimer;
         private float _waveTimer;
         private int _indexPool = 0;
 
         [Inject]
-        private void Construct(Player player)
+        private void Construct(GameManager gameManager, Bank bank)
         {
-            _player = player;
+            _player = gameManager.Player;
+            _bank = bank;
         }
 
         private void Start()
@@ -86,7 +87,7 @@ namespace SurvivalWizard.Enemies
         {
             if (obj is Enemy enemy)
             {
-                Bank.Instance.AddCoins(enemy.NumberOfCoins);
+                _bank.AddCoins(enemy.NumberOfCoins);
                 _player.PlayerLevel.AddExperience(enemy.NumberOfExperience);
             }
         }

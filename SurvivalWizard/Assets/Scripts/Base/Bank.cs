@@ -3,24 +3,25 @@ using System;
 
 namespace SurvivalWizard.Base
 {
-    public class Bank : Singleton<Bank>
+    public class Bank
     {
         public event Action<int> OnChangeCoinsEvent;
 
-        private IStorageService _storageService;
+        public readonly IStorageService StorageService;
+
+        private const string _nameLoadFile = "Coins";
 
         public int CurrentCoins { get; private set; }
-        public IStorageService StorageService { get => _storageService; }
 
-        protected override void Awake()
+        public Bank()
         {
-            base.Awake();
-            _storageService = new JsonToFileStorageService();
+            StorageService = new JsonToFileStorageService();
+            StorageService.Load<int>(_nameLoadFile, LoadCoins);
         }
 
-        private void Start()
+        private void LoadCoins(int coins)
         {
-            DontDestroyOnLoad(gameObject);
+            CurrentCoins = coins;
         }
 
         public void AddCoins(int coins)
@@ -49,6 +50,11 @@ namespace SurvivalWizard.Base
                 OnChangeCoinsEvent?.Invoke(CurrentCoins);
                 return true;
             }
+        }
+
+        public void SaveCoins()
+        {
+            StorageService.Save(_nameLoadFile, CurrentCoins);
         }
     }
 }

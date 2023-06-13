@@ -7,15 +7,13 @@ namespace SurvivalWizard.UI.UIScripts
     public class ShopUI : MonoBehaviour
     {
         [SerializeField] private Button _backButton;
-        [SerializeField] private Button _upgradeHPButton;
-        [SerializeField] private Button _upgradeMoveSpeedButton;
-        [SerializeField] private TextMeshProUGUI _upgradeHPPrice;
-        [SerializeField] private TextMeshProUGUI _upgradeMoveSpeedPrice;
-
+        [SerializeField] private ButtonUpgrade _prefabUpgradeButton;
+        [SerializeField] private Transform _containerUpgradeButtons;
+        [SerializeField] private TextMeshProUGUI _currentCoins;
+        
         public Button BackButton { get => _backButton; }
-        public Button UpgradeHPButton { get => _upgradeHPButton; }
-        public Button UpgradeMoveSpeedButton { get => _upgradeMoveSpeedButton; }
-        public TextMeshProUGUI UpgradeHPPrice { get => _upgradeHPPrice; }
-        public TextMeshProUGUI UpgradeMoveSpeedPrice { get => _upgradeMoveSpeedPrice; }
+        public ButtonUpgrade PrefabUpgradeButton { get => _prefabUpgradeButton; }
+        public Transform ContainerUpgradeButtons { get => _containerUpgradeButtons; }
+        public TextMeshProUGUI CurrentCoins { get => _currentCoins; }
     }
 }

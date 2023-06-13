@@ -8,19 +8,23 @@ namespace SurvivalWizard.UI.StateUI
 {
     public class AddingSpellUIState : IStateUI
     {
-        private LoaderUI _loaderUI;
-        private AddingSpellUI _addingSpellUI;
+        private readonly LoaderUI _loaderUI;
+        private readonly AddingSpellUI _addingSpellUI;
+        private readonly Player _player;
+        private readonly GameManager _gameManager;
         private bool _isCreated;
-        private Player _player;
 
-        public AddingSpellUIState(LoaderUI loaderUI, AddingSpellUI addingSpellUI, Player player)
+        public AddingSpellUIState(LoaderUI loaderUI, AddingSpellUI addingSpellUI, GameManager gameManager)
         {
             _loaderUI = loaderUI;
             _addingSpellUI = addingSpellUI;
-            _player = player;
+            _player = gameManager.Player;
+            _gameManager = gameManager;
         }
+
         public void Enter()
         {
+            _gameManager.Pause(true);
             _addingSpellUI.gameObject.SetActive(true);
             CreateSpellButton();
         }

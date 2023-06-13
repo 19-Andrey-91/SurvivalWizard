@@ -77,5 +77,11 @@ namespace SurvivalWizard.PlayerScripts
             SpellBook.StopFire();
             SpellBook.Fire(_pointSpawnSpell);
         }
+
+        public void UpdateStats()
+        {
+            Hp = MaxHp;
+            PlayerMovement.ChangeSpeed(Speed);
+        }
     }
 }
